@@ -4,14 +4,12 @@ package bacpac;
  *
  * @author rsuppl1
  */
-public class DrinksPage extends StateDisplayer {
-    @Override
+public class DrinksPage extends CurrentState {
     public void handleUpdate(){
-        
+        System.out.print("Fuck you");
     }
     
-    @Override
     public void displayPage(){
-        
+        System.out.print("Fuck you");
     }
 }
