@@ -7,7 +7,8 @@ package bacpac;
 public class LogInPage extends StateDisplayer {
     @Override
     public void handleUpdate(){
-        
+        if (login == true)
+            currentState = displayStates[2];
     }
     
     @Override

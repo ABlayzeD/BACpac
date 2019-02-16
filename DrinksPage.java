@@ -7,7 +7,8 @@ package bacpac;
 public class DrinksPage extends StateDisplayer {
     @Override
     public void handleUpdate(){
-        
+        if (backButton == true)
+            currentState = displayStates[2];
     }
     
     @Override
