@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bacpac.LoginPageController">
+   <children>
+      <Label layoutX="232.0" layoutY="52.0" prefHeight="44.0" prefWidth="136.0" text="BACpac">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="216.0" layoutY="108.0" text="Your Alcohol Buddy">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="goBtn" layoutX="281.0" layoutY="277.0" mnemonicParsing="false" onAction="#handle" onMouseClicked="#handle" text="Go!" />
+      <TextField layoutX="217.0" layoutY="157.0" promptText="Username/E-mail" />
+      <PasswordField layoutX="217.0" layoutY="215.0" promptText="Password" />
+   </children>
+</AnchorPane>
