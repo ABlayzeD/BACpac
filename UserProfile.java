@@ -1,12 +1,16 @@
 
 package bacpac;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author lterro1
  */
 public class UserProfile 
 {
+    private ArrayList favorites;
     /**
      * Returns the weight of the user
      */
@@ -26,6 +30,8 @@ public class UserProfile
         weight = 170;
         height = 68;
         name = "Luis";
+        
+        favorites = new ArrayList();
     }
     /**
      * Creates a valid User
@@ -37,7 +43,6 @@ public class UserProfile
         this.name = name;
         this.weight = weight;
         this.height = height;
-        
     }
     /**
      * Calculates the Body Mass Index(BMI) of User.
@@ -75,6 +80,20 @@ public class UserProfile
      */
     public double getBMI(){
         return calcBMI(getWeight(), getHeight());
+    }
+    
+    public void addToFavorites(Object newAdd) 
+    {
+        favorites.add(newAdd);
+    }
+    
+    public String printFavorites()
+    {
+        return Arrays.toString(getFavorites());
+    }
+    public Object[] getFavorites()
+    {
+        return favorites.toArray();
     }
     
 }
