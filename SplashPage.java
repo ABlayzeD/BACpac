@@ -31,7 +31,7 @@ public class SplashPage implements CurrentState {
     @Override
     public void displayPage()
     {
-        System.out.print("Fuck you");
+        System.out.print("make a splash");
     }
 
     public boolean setDrinkPageTrue()

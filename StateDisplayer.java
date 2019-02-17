@@ -10,6 +10,9 @@ public class StateDisplayer  {
     private final CurrentState UserProfilePage;
     private final CurrentState SplashPage;
     private final CurrentState DrinksPage;
+    private final CurrentState WinePage;
+    //private final CurrentState BeerPage;
+    //private final CurrentState LiquorPage;
     
     private CurrentState State;
    
@@ -19,6 +22,8 @@ public class StateDisplayer  {
         LogInPage = new LogInPage(this);
         SplashPage = new SplashPage(this);
         UserProfilePage = new UserProfilePage(this);
+        WinePage = new WinePage(this);
+       
        
         State = LogInPage;
     }
@@ -58,8 +63,16 @@ public class StateDisplayer  {
         return UserProfilePage;
     }
 
-    public Object getLogInPageState()
+    public Object getWinePageState()
     {
-        return LogInPage;
+        return WinePage;
+    }
+    public Object getBeerPageState()
+    {
+        return BeerPage;
+    }
+    public Object getLiquorPageState()
+    {
+        return LiquorPage;
     }
 }
