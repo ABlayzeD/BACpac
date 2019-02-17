@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bacpac;
 
 /**
  *
  * @author lterro1
  */
-public class UserProfile implements UserProfileAPI
+public class UserProfile 
 {
     /**
      * Returns the weight of the user

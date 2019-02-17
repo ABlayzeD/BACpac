@@ -4,11 +4,21 @@ package bacpac;
  *
  * @author rsuppl1
  */
-public class LogInPage extends CurrentState {
+public class LogInPage implements CurrentState {
+    boolean login;
+    StateDisplayer displayState;
+    
+    public LogInPage(StateDisplayer displayState)
+    {
+        this.displayState = displayState;
+    }
+    @Override
     public void handleUpdate(){
-        System.out.print("Fuck you");
+        if (login = true)
+            displayState.setDisplayState((CurrentState) displayState.getSplashPageState());
     }
     
+    @Override
     public void displayPage(){
         System.out.print("Fuck you");
     }
