@@ -9,6 +9,8 @@ public class SplashPage implements CurrentState {
     boolean userProfileButton;
     boolean drinkPageButton;
     
+    public SplashPage(){}
+    
     public SplashPage(StateDisplayer displayState)
     {
         this.displayState = displayState;
@@ -32,4 +34,13 @@ public class SplashPage implements CurrentState {
         System.out.print("Fuck you");
     }
 
+    public boolean setDrinkPageTrue()
+    {
+        return drinkPageButton = true;
+    }
+    
+    public boolean setUserProfileTrue()
+    {
+        return userProfileButton = true;
+    }
 }
