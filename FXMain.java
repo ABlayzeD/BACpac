@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class FXMain extends Application {
     
-    LogInPage LoggedIn = new LogInPage();
+    
     
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -28,16 +29,7 @@ public class FXMain extends Application {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-
-        Button goBtn = new Button();
-        goBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                LoggedIn.setLogInTrue();
-                System.out.println("login = true");
-            }
-        });
+        
     }
 
     /**
