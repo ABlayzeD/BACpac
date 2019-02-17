@@ -9,7 +9,7 @@ package bacpac;
  *
  * @author lterro1
  */
-public class UserProfile implements UserProfileAPI
+public class UserProfile 
 {
     /**
      * Returns the weight of the user
