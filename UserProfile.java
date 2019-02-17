@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bacpac;
 
 /**
@@ -45,7 +49,8 @@ public class UserProfile
      * @param height height of user
      * @return the BMI of user
      */
-    private double calcBMI(double weight, double height){
+    public double getBMI(double weight, double height){
+        
         return(703*(weight/(height*height)));
     }
     /**
@@ -69,12 +74,6 @@ public class UserProfile
     public String getName(){
         return name;
     }
-    /**
-     * Gives a double representing the current BMI
-     * @return the User's Current BMI
-     */
-    public double getBMI(){
-        return calcBMI(getWeight(), getHeight());
-    }
     
+  
 }
