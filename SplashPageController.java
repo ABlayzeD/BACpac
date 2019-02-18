@@ -46,8 +46,19 @@ SplashPage inSplash = new SplashPage();
             
             @Override
             public void handle(ActionEvent event) {
+                try{
                 inSplash.setUserProfileTrue();
-                System.out.println("login = true");
+                System.out.println("loadProfile = true");
+                String fxmlResource = "UserProfilePage.fxml";
+                Parent panel = null;
+                panel = FXMLLoader.load(getClass().getResource(fxmlResource));
+                Scene scene = new Scene(panel);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(SplashPageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }); 
     }
@@ -69,7 +80,7 @@ SplashPage inSplash = new SplashPage();
                 stage.setScene(scene);
                 stage.show();
                 } catch (IOException ex) {
-                    Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SplashPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

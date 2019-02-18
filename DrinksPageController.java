@@ -30,6 +30,8 @@ public class DrinksPageController  {
     private Button WineButton;
     @FXML
     private Button LiquorButton;
+    @FXML
+    private Button Custom;
     
     public DrinksPageController(){}
     
@@ -55,7 +57,7 @@ public class DrinksPageController  {
                 stage.setScene(scene);
                 stage.show();
                 } catch (IOException ex) {
-                    Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DrinksPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }); 
@@ -79,7 +81,7 @@ public class DrinksPageController  {
                 stage.setScene(scene);
                 stage.show();
                 } catch (IOException ex) {
-                    Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DrinksPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }); 
@@ -103,9 +105,34 @@ public class DrinksPageController  {
                 stage.setScene(scene);
                 stage.show();
                 } catch (IOException ex) {
-                    Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DrinksPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }); 
+    }
+    
+    @FXML
+    private void handleCustomButton()
+    {
+       Custom.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+            
+                chooseDrink.setBeerPageTrue();
+                System.out.println("AddCustom = true");
+                String fxmlResource = "CustomDrinkPage.fxml";
+                Parent panel = null;
+                panel = FXMLLoader.load(getClass().getResource(fxmlResource));
+                Scene scene = new Scene(panel);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(DrinksPageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 }

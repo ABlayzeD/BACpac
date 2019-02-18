@@ -8,32 +8,51 @@ package bacpac;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
  * @author lterr
  */
-public class UserProfilePageController implements Initializable {
-
-    private TextField height;
-    private TextField weight;
-    private Label BMI;
-    private boolean start = true;
+public class UserProfilePageController {
+    
     UserProfile user = new UserProfile();
-
+    String tempFave = "tempFave, tempFav";
+    
     @FXML
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }
+    private TextField height;
+    
+    @FXML
+    private TextField weight;
+    
+    @FXML
+    private TextField BMI;
+    
+    @FXML
+    private TextField Favorite;
+    
 
+    private boolean start = true;
+    
+    @FXML
+    private void handleFavorite()
+    {
+        Favorite.setOnAction(new EventHandler<ActionEvent>() {
+            
+        @Override
+        public void handle(ActionEvent event) 
+        {
+            Favorite.setText(tempFave);
+        }
+    }); 
+    }
+    
     /**
      *
      * @param event
@@ -47,8 +66,10 @@ public class UserProfilePageController implements Initializable {
         BMI.setText(BMI.getText());
 
     }
+    
+    @FXML
     public void processBMI(ActionEvent event){
-       double output = user.getBMI(Double.parseDouble(height.getText()),Double.parseDouble(weight.getText()));
+       double output = user.getBMI(Double.parseDouble(weight.getText()),Double.parseDouble(height.getText()));
        BMI.setText(String.valueOf(output));
     }
 }

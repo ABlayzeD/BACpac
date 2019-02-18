@@ -7,19 +7,24 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bacpac.DrinksPageController">
    <children>
-      <Button fx:id="BeerButton" mnemonicParsing="false" onAction="#handleBeerButton" prefHeight="426.0" prefWidth="195.0" text="Beer">
-         <font>
-            <Font name="Agency FB" size="60.0" />
-         </font>
-      </Button>
-      <Button fx:id="WineButton" mnemonicParsing="false" onAction="#handleWineButton" prefHeight="400.0" prefWidth="223.0" text="Wine">
+      <Button fx:id="WineButton" mnemonicParsing="false" onAction="#handleWineButton" prefHeight="121.0" prefWidth="189.0" text="Wine">
          <font>
             <Font name="Garamond Bold" size="55.0" />
          </font>
       </Button>
-      <Button fx:id="LiquorButton" mnemonicParsing="false" onAction="#handleLiquorButton" prefHeight="400.0" prefWidth="241.0" text="Liquor">
+      <Button fx:id="BeerButton" mnemonicParsing="false" onAction="#handleBeerButton" prefHeight="122.0" prefWidth="184.0" text="Beer">
+         <font>
+            <Font name="Agency FB" size="60.0" />
+         </font>
+      </Button>
+      <Button fx:id="LiquorButton" mnemonicParsing="false" onAction="#handleLiquorButton" prefHeight="123.0" prefWidth="193.0" text="Liquor">
          <font>
             <Font name="Agency FB" size="64.0" />
+         </font>
+      </Button>
+      <Button fx:id="Custom" mnemonicParsing="false" onAction="#handleCustomButton" onMouseClicked="#handleCustomButton" text="Custom">
+         <font>
+            <Font size="64.0" />
          </font>
       </Button>
    </children>

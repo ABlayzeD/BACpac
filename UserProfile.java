@@ -5,12 +5,17 @@
  */
 package bacpac;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author lterro1
  */
 public class UserProfile 
 {
+    private ArrayList favorite = new ArrayList();
     /**
      * Returns the weight of the user
      */
@@ -75,5 +80,20 @@ public class UserProfile
         return name;
     }
     
+    public String printFavorite()
+    {
+        return Arrays.toString(getFavoriteArray());
+    }
+    
+    public Object[] getFavoriteArray()
+    {
+        return favorite.toArray();
+    }
   
+    public void addToFavorite(Object newAdd)
+    {
+        favorite.add(newAdd);
+    }
+    
+    
 }

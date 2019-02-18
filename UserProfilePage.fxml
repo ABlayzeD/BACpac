@@ -13,23 +13,34 @@
         <URL value="@userprofilepage.css" />
     </stylesheets>
    <children>
-      <TitledPane animated="false" text="Profile">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="600.0">
-               <children>
-                  <Button layoutX="545.0" layoutY="336.0" mnemonicParsing="false" text="Back" />
-                  <TextField fx:id="height" layoutX="151.0" layoutY="123.0" />
-                  <TextField fx:id="weight" layoutX="151.0" layoutY="163.0" />
-                  <Text layoutX="66.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height" />
-                  <Text layoutX="66.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight" />
-                  <Text layoutX="66.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BMI" />
-                  <Text layoutX="62.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite" />
-                  <TextField layoutX="151.0" layoutY="239.0" />
-                  <Label fx:id="BMI" layoutX="151.0" layoutY="208.0" prefHeight="17.0" prefWidth="68.0" />
-                  <Button layoutX="314.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#processBMI" text="Button" />
-               </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
+      <Label layoutX="55.0" layoutY="33.0" text="Profile">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="125.0" text="Height">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="165.0" text="Weight">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="216.0" text="BMI">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="280.0" text="Favorite Drinks">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="height" layoutX="184.0" layoutY="123.0" />
+      <TextField fx:id="weight" layoutX="184.0" layoutY="163.0" />
+      <TextField fx:id="Favorite" editable="false" layoutX="208.0" layoutY="278.0" onAction="#handleFavorite" onMouseClicked="#handleFavorite" prefHeight="27.0" prefWidth="372.0" />
+      <TextField fx:id="BMI" editable="false" layoutX="184.0" layoutY="214.0" onAction="#processBMI" onMouseClicked="#processBMI" />
    </children>
 </AnchorPane>
