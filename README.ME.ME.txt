@@ -1,1 +1,0 @@
-The Excel document can be most easily manipulated/pulled from using the Apache POI.
