@@ -11,6 +11,7 @@ public class bacCalculator {
     private double decimalPercentAlc;
     private double timePassed;
     UserProfile user = new UserProfile();
+    BACActivity display = new BACActivity();
 
     public bacCalculator()
     {
@@ -30,6 +31,7 @@ public class bacCalculator {
         decimalPercentAlc =+ percentAlc/100;
         totalOunces =+ fluidOunces;
         BAC =+ ((totalOunces * decimalPercentAlc)/user.getBMI()) - 1.5 * timePassed/60;
+        display.start();
     }
 
     public void addFiveMinutes()
@@ -42,5 +44,17 @@ public class bacCalculator {
         return BAC;
     }
 
+    public void resetBAC(){
+        BAC = 0.0;
+        totalOunces = 0.0;
+        decimalPercentAlc = 0.0;
+        timePassed = 0.0;
+    }
 
+    public long getTimeLeft(){
+        long timeLeft = 0;
+        long tmpBAC = (long) getBAC();
+        timeLeft = (long) (tmpBAC/1.5);
+        return timeLeft * 60;
+    }
 }
