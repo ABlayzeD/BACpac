@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.text.BreakIterator;
 
@@ -19,9 +20,9 @@ public class BACActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
-
-
-
+        TextView BACDisplay = findViewById(R.id.BACDisplay);
+        bacCalculator current = new bacCalculator();
+        BACDisplay.setText(Double.toString(current.getBAC()));
     }
     /*
     public class DelayTask extends AsyncTask<Void, Integer, String> {

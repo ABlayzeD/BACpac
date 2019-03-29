@@ -36,8 +36,11 @@ public class bacCalculator {
     {
         timePassed =+ 5;
     }
+
     public double getBAC()
     {
         return BAC;
     }
+
+
 }

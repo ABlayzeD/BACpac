@@ -24,13 +24,15 @@
         tools:textSize="24sp" />
 
     <TextView
-        android:id="@+id/BAC  Display"
+        android:id="@+id/BACDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:inputType="numberDecimal"
         android:text="TextView"
         android:textSize="30sp"
+        app:autoSizeTextType="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
