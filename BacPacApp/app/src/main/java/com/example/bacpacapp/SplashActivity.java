@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
     private void goToLogIn() {
-        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        Intent intent = new Intent(SplashActivity.this, GLoginActivity.class);
         startActivity(intent);
         finish();
     }

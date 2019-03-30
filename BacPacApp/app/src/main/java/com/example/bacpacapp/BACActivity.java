@@ -18,7 +18,7 @@ import static android.os.SystemClock.sleep;
 
 public class BACActivity extends AppCompatActivity {
 
-    bacCalculator current = new bacCalculator();
+    bacCalculator currentBAC;
     TextView timerDisplay;
     TextView BACDisplay;
     String timerVal;
@@ -29,12 +29,13 @@ public class BACActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        bacCalculator currentBAC = new bacCalculator();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
         timerDisplay = findViewById(R.id.TimeLeftDisplay);
         BACDisplay = findViewById(R.id.BACDisplay);
         timerVal = "0:00";
-        BACDisplay.setText(Double.toString(current.getBAC()));
+        BACDisplay.setText(String.format("%.2f", currentBAC.getBAC()));
         timerDisplay.setText(timerVal);
         profile = findViewById(R.id.ProfileButton);
         addDrink = findViewById(R.id.AddDrinkButton);
@@ -60,17 +61,17 @@ public class BACActivity extends AppCompatActivity {
      * method so that it starts the timer each time a drink is added by the user.
      */
     public void start(){
-        CountDownTimer : new CountDownTimer(current.getTimeLeft()  * 60000,1000) {
+        CountDownTimer : new CountDownTimer(currentBAC.getTimeLeft()  * 60000,1000) {
             @Override
             public void onTick(long millisInFuture) {
                 timerVal = Long.toString(millisInFuture/60000) + Long.toString(millisInFuture/1000);
                 if((millisInFuture/1000) % 5 == 0)
-                    current.addFiveMinutes();
+                    currentBAC.addFiveMinutes();
             }
 
             @Override
             public void onFinish() {
-                current.resetBAC();
+                currentBAC.resetBAC();
                 timerDisplay.setText("Congrats You Are Sober!!");
             }
         };

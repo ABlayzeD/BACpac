@@ -10,8 +10,9 @@ public class bacCalculator {
     private double totalOunces;
     private double decimalPercentAlc;
     private double timePassed;
+    private double ouncesAlc;
     UserProfile user = new UserProfile();
-    BACActivity display = new BACActivity();
+    BACActivity displayReference = new BACActivity();
 
     public bacCalculator()
     {
@@ -28,10 +29,11 @@ public class bacCalculator {
      */
     public void addDrinktoBAC(int percentAlc, double fluidOunces)
     {
-        decimalPercentAlc =+ percentAlc/100;
+        ouncesAlc =+ (percentAlc/100) * fluidOunces;
         totalOunces =+ fluidOunces;
+        decimalPercentAlc = ouncesAlc/totalOunces;
         BAC =+ ((totalOunces * decimalPercentAlc)/user.getBMI()) - 1.5 * timePassed/60;
-        display.start();
+        displayReference.start();
     }
 
     public void addFiveMinutes()
