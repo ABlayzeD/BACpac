@@ -20,11 +20,11 @@ public class bacCalculator {
     public bacCalculator()
     {
 
-        this.BAC = 0;
-        this.totalOunces = 0;
-        this.decimalPercentAlc = 0;
-        this.timePassed = 0;
-        this.ouncesAlc = 0;
+        BAC = 0;
+        totalOunces = 0;
+        decimalPercentAlc = 0;
+        timePassed = 0;
+        ouncesAlc = 0;
 
     }
 

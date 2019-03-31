@@ -25,13 +25,13 @@ public class BACActivity extends AppCompatActivity {
     Button profile;
     Button addDrink;
 
-    public BACActivity(){}
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        currentBAC = new bacCalculator();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
+        currentBAC = new bacCalculator();
         timerDisplay = findViewById(R.id.TimeLeftDisplay);
         BACDisplay = findViewById(R.id.BACDisplay);
         timerVal = "0:00";
@@ -62,6 +62,7 @@ public class BACActivity extends AppCompatActivity {
      * method so that it starts the timer each time a drink is added by the user.
      */
     public void start(){
+        currentBAC = new bacCalculator();
         CountDownTimer : new CountDownTimer(currentBAC.getTimeLeft()  * 60000,1000) {
             @Override
             public void onTick(long millisInFuture) {

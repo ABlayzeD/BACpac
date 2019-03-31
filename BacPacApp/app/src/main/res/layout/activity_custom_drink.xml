@@ -50,8 +50,8 @@
         android:id="@+id/OuncesHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:layout_marginBottom="348dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
         android:text="Total Ounces"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +90,7 @@
         android:id="@+id/NumberAddedHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="220dp"
         android:text="How Many?"
         android:textSize="24sp"
@@ -98,8 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/addOunces" />
 
     <EditText
         android:id="@+id/NumberDrank"
