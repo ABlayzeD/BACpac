@@ -29,7 +29,7 @@ public class BACActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        bacCalculator currentBAC = new bacCalculator();
+        currentBAC = new bacCalculator();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
         timerDisplay = findViewById(R.id.TimeLeftDisplay);
@@ -55,6 +55,7 @@ public class BACActivity extends AppCompatActivity {
         });
 
     }
+
 
     /**
      * This is the countdown timer for the time left till BAC = 0. It is called from the addDrinktoBAC
@@ -88,38 +89,6 @@ public class BACActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    /*
-    public class DelayTask extends AsyncTask<Void, Integer, String> {
-        int count = 0;
-        @Override
-        protected String doInBackground(Integer... params) {
-            for (; count <= params[0]; count++) {
-                try {
-                    Thread.sleep(1000);
-                    publishProgress(count);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            return "Task Completed.";
-        }
-        @Override
-        protected void onPostExecute(String result) {
-            progressBar.setVisibility(View.GONE);
-            txt.setText(result);
-            btn.setText("Restart");
-        }
-        @Override
-        protected void onPreExecute() {
-            txt.setText("Task Starting...");
-        }
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            txt.setText("Running..."+ values[0]);
-            progressBar.setProgress(values[0]);
-        }
-    }
-    }
-    */
+
 
 }

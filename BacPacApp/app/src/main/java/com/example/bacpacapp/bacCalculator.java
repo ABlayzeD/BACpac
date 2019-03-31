@@ -1,5 +1,7 @@
 package com.example.bacpacapp;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 public class bacCalculator {
     /**
      * This class is used to calculate the BAC. To use create an Object reference for Each BAC you
@@ -14,12 +16,16 @@ public class bacCalculator {
     UserProfile user = new UserProfile();
     BACActivity displayReference = new BACActivity();
 
+
     public bacCalculator()
     {
-        BAC = 0.0;
-        totalOunces = 0.0;
-        decimalPercentAlc = 0.0;
-        timePassed = 0.0;
+
+        this.BAC = 0;
+        this.totalOunces = 0;
+        this.decimalPercentAlc = 0;
+        this.timePassed = 0;
+        this.ouncesAlc = 0;
+
     }
 
     /**
@@ -27,12 +33,12 @@ public class bacCalculator {
      * @param percentAlc
      * @param fluidOunces
      */
-    public void addDrinktoBAC(int percentAlc, double fluidOunces)
+    public  void addDrinkToBAC(int percentAlc, double fluidOunces)
     {
         ouncesAlc =+ (percentAlc/100) * fluidOunces;
         totalOunces =+ fluidOunces;
         decimalPercentAlc = ouncesAlc/totalOunces;
-        BAC =+ ((totalOunces * decimalPercentAlc)/user.getBMI()) - 1.5 * timePassed/60;
+        BAC =+ ((totalOunces * decimalPercentAlc)/user.getBMI()) - (1.5 * timePassed/60);
         displayReference.start();
     }
 
@@ -56,7 +62,7 @@ public class bacCalculator {
     public long getTimeLeft(){
         long timeLeft = 0;
         long tmpBAC = (long) getBAC();
-        timeLeft = (long) (tmpBAC/1.5);
+        timeLeft = (long) (tmpBAC / 1.5);
         return timeLeft * 60;
     }
 }

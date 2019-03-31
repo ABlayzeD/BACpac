@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
+        <activity android:name=".LiqActivity"></activity>
+        <activity android:name=".WineActivity" />
+        <activity android:name=".BeerActivity" />
+        <activity android:name=".CustomDrinkActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".GLoginActivity">
             <intent-filter>

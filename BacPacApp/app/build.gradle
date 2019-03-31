@@ -19,8 +19,8 @@ android {
     }
 }
 
-allprojects{
-    repositories{
+allprojects {
+    repositories {
         google()
     }
 }
