@@ -1,24 +1,15 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.os.AsyncTask;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.BreakIterator;
-
-import static android.os.SystemClock.elapsedRealtime;
-import static android.os.SystemClock.sleep;
-
 public class BACActivity extends AppCompatActivity {
 
-    bacCalculator currentBAC;
     TextView timerDisplay;
     TextView BACDisplay;
     String timerVal;
@@ -31,11 +22,11 @@ public class BACActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
-        currentBAC = new bacCalculator();
         timerDisplay = findViewById(R.id.TimeLeftDisplay);
         BACDisplay = findViewById(R.id.BACDisplay);
         timerVal = "0:00";
-        BACDisplay.setText(String.format("%.2f", currentBAC.getBAC()));
+        setTimerDisplay();
+        BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
         timerDisplay.setText(timerVal);
         profile = findViewById(R.id.ProfileButton);
         addDrink = findViewById(R.id.AddDrinkButton);
@@ -61,22 +52,23 @@ public class BACActivity extends AppCompatActivity {
      * This is the countdown timer for the time left till BAC = 0. It is called from the addDrinktoBAC
      * method so that it starts the timer each time a drink is added by the user.
      */
-    public void start(){
-        currentBAC = new bacCalculator();
-        CountDownTimer : new CountDownTimer(currentBAC.getTimeLeft()  * 60000,1000) {
+
+    public String setTimerDisplay(){
+        CountDownTimer : new CountDownTimer(bacCalculator.getTimeLeft()  * 60000,1000) {
             @Override
             public void onTick(long millisInFuture) {
                 timerVal = Long.toString(millisInFuture/60000) + Long.toString(millisInFuture/1000);
                 if((millisInFuture/1000) % 5 == 0)
-                    currentBAC.addFiveMinutes();
+                    bacCalculator.addFiveMinutes();
             }
 
             @Override
             public void onFinish() {
-                currentBAC.resetBAC();
-                timerDisplay.setText("Congrats You Are Sober!!");
+                bacCalculator.resetBAC();
+                timerVal = "Congrats You Are Sober!!";
             }
         };
+        return timerVal;
     }
 
     private void goToDrinks() {
@@ -90,6 +82,4 @@ public class BACActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 }
