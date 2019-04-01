@@ -16,10 +16,11 @@
         <activity android:name=".BeerActivity" />
         <activity android:name=".CustomDrinkActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".GLoginActivity">
+        <activity android:name=".GLoginActivity"/>
+
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

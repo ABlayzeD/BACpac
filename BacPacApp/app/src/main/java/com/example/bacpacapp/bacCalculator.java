@@ -8,7 +8,7 @@ public class bacCalculator {
      * want calculated. Example Once BAC <= 0 then create a new reference to start as the user is
      * now sober.
      */
-    private static double BAC = 0;
+    private static double BAC = 20;
     private static double totalOunces;
     private static double decimalPercentAlc;
     private static double timePassed;
@@ -17,13 +17,12 @@ public class bacCalculator {
     static BACActivity displayReference = new BACActivity();
 
 
-    /*public bacCalculator()
-    {
+    public bacCalculator() {
         totalOunces = 0;
         decimalPercentAlc = 0;
         timePassed = 0;
         ouncesAlc = 0;
-    }*/
+    }
 
     /**
      * Calculates BAC once you are adding drinks

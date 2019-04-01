@@ -29,13 +29,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
-        android:text="BacPac"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="BacPac" />
 
     <TextView
         android:id="@+id/textView2"
@@ -43,10 +43,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:layout_marginBottom="66dp"
-        android:text="Pack Your Drinks Here"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AppNameLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/AppNameLabel"
+        tools:text="Pack Your Drinks Here" />
 </android.support.constraint.ConstraintLayout>

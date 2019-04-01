@@ -73,15 +73,19 @@ public class GLoginActivity extends AppCompatActivity {
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        Toast.makeText(GLoginActivity.this, "Logged in!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(GLoginActivity.this, BACActivity.class));
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
+            Toast.makeText(GLoginActivity.this, "Logged in!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GLoginActivity.this, BACActivity.class));
+
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
-            Toast.makeText(GLoginActivity.this, "Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(GLoginActivity.this, "TECHNICALLY FAILED LOGIN", Toast.LENGTH_LONG).show();
         }
     }
 

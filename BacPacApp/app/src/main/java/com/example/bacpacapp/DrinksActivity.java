@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class DrinksActivity extends AppCompatActivity {
-
+    TextView DrinkHeader;
     Button cancelBtn;
     Button beerBtn;
     Button wineBtn;
@@ -18,15 +19,21 @@ public class DrinksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drinks);
-
+        DrinkHeader=findViewById(R.id.DrinksPageHeader);
+        DrinkHeader.setText("Pick a drink!");
         /**
          * initializing all buttons in activity
          */
         cancelBtn = findViewById(R.id.CancelButton);
+        cancelBtn.setText("Cancel");
         beerBtn = findViewById(R.id.BeerButton);
+        beerBtn.setText("Beer");
         wineBtn = findViewById(R.id.WineButton);
+        wineBtn.setText("Wine");
         liqBtn = findViewById(R.id.LiqButton);
+        liqBtn.setText("Liquor");
         customBtn = findViewById(R.id.CustomButton);
+        customBtn.setText("Custom");
 
         /**
          * all listeners for buttons

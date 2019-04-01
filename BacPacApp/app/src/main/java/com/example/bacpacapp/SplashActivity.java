@@ -3,8 +3,7 @@ package com.example.bacpacapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
@@ -16,17 +15,27 @@ public class SplashActivity extends AppCompatActivity {
 
         TextView textView = (TextView) findViewById(R.id.BACpacTitle);
         textView.setText("BACpac");
-        ImageButton splashButton = findViewById(R.id.splashButton);
-        splashButton.setOnClickListener(new View.OnClickListener() {
+
+        ImageView SplashImage = findViewById(R.id.SplashImage);
+        SplashImage.setImageResource(R.drawable.splash);
+
+        new Thread(new Runnable()
+        {
             @Override
-            public void onClick(View v) {
-
-                goToLogIn();
-
+            public void run()
+            {
+                try
+                {
+                    Thread.sleep(3000);
+                    goToLogIn();
+                }
+                catch (InterruptedException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
-
-
-        });
+        }).start();
     }
     private void goToLogIn() {
         Intent intent = new Intent(SplashActivity.this, GLoginActivity.class);

@@ -31,6 +31,29 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1754407247">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="fxml" value="1" />
+          <entry key="java" value="1" />
+          <entry key="project" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="XML" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -61,10 +84,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="41" />
+    <option name="x" value="40" />
     <option name="y" value="42" />
     <option name="width" value="1662" />
-    <option name="height" value="989" />
+    <option name="height" value="990" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -78,13 +101,33 @@
               <item name="BACpac" type="b2602c69:ProjectViewProjectNode" />
               <item name="BACpac" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="BACpac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BACpac" type="462c0819:PsiDirectoryNode" />
+              <item name="BacPacApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BACpac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BACpac" type="462c0819:PsiDirectoryNode" />
+              <item name="BacPacApp" type="462c0819:PsiDirectoryNode" />
+              <item name=".gradle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BACpac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BACpac" type="462c0819:PsiDirectoryNode" />
+              <item name="BacPacApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BacPacApp/app" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -112,16 +155,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="41" y="42" width="1662" height="989" extended-state="0" />
-    <editor active="true" />
+    <frame x="27" y="28" width="1108" height="660" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3294335" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3286648" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" />
@@ -146,6 +189,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BacPacApp/.project">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/SplashPage.fxml">
       <provider selected="true" editor-type-id="text-editor" />
