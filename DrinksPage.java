@@ -5,10 +5,12 @@ package bacpac;
  * @author rsuppl1
  */
 public class DrinksPage implements CurrentState{
+
     boolean beerButton,wineButton, liquorButton;
     StateDisplayer displayState;
     
     public DrinksPage(){}
+
     public DrinksPage(StateDisplayer displayState)
     {
         this.displayState = displayState;
@@ -16,6 +18,7 @@ public class DrinksPage implements CurrentState{
     
     @Override
     public void handleUpdate(){
+
         if (wineButton = true)
             displayState.setDisplayState((CurrentState) displayState.getWinePageState());
         if (beerButton = true)
@@ -31,6 +34,7 @@ public class DrinksPage implements CurrentState{
     public boolean setWinePageTrue()
     {
         return wineButton = true;
+
     }
     
     public boolean setBeerPageTrue()

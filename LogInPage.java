@@ -5,6 +5,7 @@ package bacpac;
  * @author rsuppl1
  */
 public class LogInPage implements CurrentState {
+
     boolean login = false;
     StateDisplayer displayState;
     public LogInPage(){}
@@ -27,5 +28,6 @@ public class LogInPage implements CurrentState {
     public boolean setLogInTrue()
     {
         return login = true;
+
     }
 }
