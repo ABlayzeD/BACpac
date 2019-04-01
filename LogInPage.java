@@ -5,8 +5,10 @@ package bacpac;
  * @author rsuppl1
  */
 public class LogInPage implements CurrentState {
-    boolean login;
+
+    boolean login = false;
     StateDisplayer displayState;
+    public LogInPage(){}
     
     public LogInPage(StateDisplayer displayState)
     {
@@ -21,5 +23,11 @@ public class LogInPage implements CurrentState {
     @Override
     public void displayPage(){
         System.out.print("Fuck you");
+    }
+    
+    public boolean setLogInTrue()
+    {
+        return login = true;
+
     }
 }
