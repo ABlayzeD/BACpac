@@ -36,7 +36,7 @@ public class bacCalculator {
         ouncesAlc = ouncesAlc.add((BigDecimal.valueOf((percentAlc/100) * fluidOunces)));
         totalOunces = totalOunces.add(BigDecimal.valueOf(fluidOunces));
         decimalPercentAlc = ouncesAlc.divide(totalOunces, MathContext.DECIMAL32);
-        BAC = BAC.add((((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32)).subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015)))));
+        BAC = (((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32)).subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015))));
     }
 
     public static void addFiveMinutes()
