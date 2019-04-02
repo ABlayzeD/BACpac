@@ -14,10 +14,12 @@ public class BACActivity extends AppCompatActivity {
 
     EditText timerDisplay;
     EditText BACDisplay;
-    String timerVal;
+    String timerVal = "0:00";
     Button profile;
     Button addDrink;
+    Button refresh;
     bacCalculator BAC;
+
 
 
 
@@ -32,16 +34,17 @@ public class BACActivity extends AppCompatActivity {
         TimeHeader.setText("Time Left Till Sober:");
 
         timerDisplay = findViewById(R.id.TimeLeftDisplay);
-        timerVal = "0:00";
         timerDisplay.setText(timerVal);
 
         BACDisplay = findViewById(R.id.BACDisplay);
-        BACDisplay.setText(String.format("%.2f", 0.00/*bacCalculator.getBAC()*/));
+        BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
 
         profile = findViewById(R.id.ProfileButton);
         profile.setText("Profile");
         addDrink = findViewById(R.id.AddDrinkButton);
         addDrink.setText("+Drink");
+        refresh = findViewById(R.id.refreshButton);
+        refresh.setText("Refresh");
 
         addDrink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,11 +60,19 @@ public class BACActivity extends AppCompatActivity {
             }
         });
 
-        new CountDownTimer(bacCalculator.getTimeLeft()  * 60000,1000) {
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refresh();
+            }
+        });
+
+        new CountDownTimer(  60000,1000) {
             @Override
             public void onTick(long millisInFuture) {
                 timerVal = Long.toString(millisInFuture/60000) + Long.toString(millisInFuture/1000);
                 timerDisplay.setText(timerVal);
+                BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
                 if((millisInFuture/1000) % 5 == 0)
                     bacCalculator.addFiveMinutes();
             }
@@ -70,6 +81,7 @@ public class BACActivity extends AppCompatActivity {
             public void onFinish() {
                 bacCalculator.resetBAC();
                 timerVal = "Congrats You Are Sober!!";
+                timerDisplay.setText(timerVal);
             }
         }.start();
 
@@ -92,5 +104,10 @@ public class BACActivity extends AppCompatActivity {
         Intent intent = new Intent(BACActivity.this, ProfileActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void refresh() {
+        BACDisplay = findViewById(R.id.BACDisplay);
+        BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
     }
 }

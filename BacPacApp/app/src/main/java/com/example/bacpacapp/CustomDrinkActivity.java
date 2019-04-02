@@ -53,7 +53,7 @@ public class CustomDrinkActivity extends AppCompatActivity {
 
     private void addDrink() {
         for(int i = Integer.parseInt(numberDrank.getText().toString()); i != 0; i--){
-            bacCalculator.addDrinkToBAC(Integer.parseInt(percentAlc.getText().toString()), Double.parseDouble(ounces.getText().toString()));
+            bacCalculator.addDrinkToBAC(Double.parseDouble(percentAlc.getText().toString()), Double.parseDouble(ounces.getText().toString()));
         }
         Intent intent = new Intent(CustomDrinkActivity.this , BACActivity.class);
         startActivity(intent);

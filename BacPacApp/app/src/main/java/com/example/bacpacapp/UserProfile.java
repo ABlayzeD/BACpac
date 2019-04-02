@@ -73,13 +73,13 @@ public class UserProfile
      * Gives a double representing the current BMI
      * @return the User's Current BMI
      */
-    public double getBMI(){
+    public double getBMI() {
         return calcBMI(getWeight(), getHeight());
     }
 
-    public boolean isSober(bacCalculator current){
+    /*public boolean isSober(bacCalculator current){
         if (current.getBAC() > 0)
             return false;
         return true;
-    }
+    }*/
 }

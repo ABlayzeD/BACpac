@@ -1,6 +1,7 @@
 package com.example.bacpacapp;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class bacCalculator {
     /**
@@ -8,55 +9,56 @@ public class bacCalculator {
      * want calculated. Example Once BAC <= 0 then create a new reference to start as the user is
      * now sober.
      */
-    private static double BAC = 20;
-    private static double totalOunces;
-    private static double decimalPercentAlc;
-    private static double timePassed;
-    private static double ouncesAlc;
+    private static BigDecimal BAC = BigDecimal.valueOf(0);
+    private static BigDecimal totalOunces= BigDecimal.valueOf(0);
+    private static BigDecimal decimalPercentAlc = BigDecimal.valueOf(0);
+    private static BigDecimal timePassed = BigDecimal.valueOf(0);
+    private static BigDecimal ouncesAlc = BigDecimal.valueOf(0);
     static UserProfile user = new UserProfile();
     static BACActivity displayReference = new BACActivity();
 
 
     public bacCalculator() {
-        totalOunces = 0;
-        decimalPercentAlc = 0;
-        timePassed = 0;
-        ouncesAlc = 0;
+        totalOunces = BigDecimal.valueOf(0);
+        decimalPercentAlc =BigDecimal.valueOf(0);
+        timePassed = BigDecimal.valueOf(0);
+        ouncesAlc = BigDecimal.valueOf(0);
     }
+
 
     /**
      * Calculates BAC once you are adding drinks
      * @param percentAlc
      * @param fluidOunces
      */
-    public static void addDrinkToBAC(int percentAlc, double fluidOunces)
+    public static void addDrinkToBAC(double percentAlc, double fluidOunces)
     {
-        ouncesAlc =+ (percentAlc/100) * fluidOunces;
-        totalOunces =+ fluidOunces;
-        decimalPercentAlc = ouncesAlc/totalOunces;
-        BAC =+ ((totalOunces * decimalPercentAlc)/user.getBMI()) - (1.5 * timePassed/60);
+        ouncesAlc = ouncesAlc.add((BigDecimal.valueOf((percentAlc/100) * fluidOunces)));
+        totalOunces = totalOunces.add(BigDecimal.valueOf(fluidOunces));
+        decimalPercentAlc = ouncesAlc.divide(totalOunces, MathContext.DECIMAL32);
+        BAC = BAC.add((((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32)).subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015)))));
     }
 
     public static void addFiveMinutes()
     {
-        timePassed =+ 5;
+        timePassed.add(BigDecimal.valueOf(5));
     }
 
     public static double getBAC()
     {
-        return BAC;
+        return BAC.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
     public static void resetBAC(){
-        BAC = 0.0;
-        totalOunces = 0.0;
-        decimalPercentAlc = 0.0;
-        timePassed = 0.0;
-        ouncesAlc = 0.0;
+        BAC = BigDecimal.valueOf(0);
+        totalOunces = BigDecimal.valueOf(0);
+        decimalPercentAlc = BigDecimal.valueOf(0);
+        timePassed = BigDecimal.valueOf(0);
+        ouncesAlc = BigDecimal.valueOf(0);
     }
 
     public static long getTimeLeft(){
-        long timeLeft = 0;
+        long timeLeft;
         long tmpBAC = (long) getBAC();
         timeLeft = (long) (tmpBAC / 1.5);
         return timeLeft * 60;

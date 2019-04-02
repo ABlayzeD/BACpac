@@ -33,6 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:cursorVisible="false"
+        android:editable="false"
         android:inputType='text'
         android:textSize="30sp"
         android:typeface="normal"
@@ -64,6 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:layout_marginBottom="8dp"
+        android:cursorVisible="false"
+        android:editable="false"
         android:inputType="text"
         android:textSize="30sp"
         android:typeface="sans"
@@ -115,5 +119,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Profile" />
+
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Refresh"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.902" />
 
 </android.support.constraint.ConstraintLayout>
