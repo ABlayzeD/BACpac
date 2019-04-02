@@ -1,85 +1,78 @@
+package com.example.bacpac;
 
-package com.example.bacpacapp;
+import android.nfc.Tag;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-/**
- *
- * @author lterro1
- */
-public class UserProfile 
-{
-    /**
-     * Returns the weight of the user
-     */
-    private double weight;
-    /**
-     * Returns the height of the user
-     */
-    private double height;
-    /**
-     * Returns the name of the user
-     */
-    private String name; 
-    /**
-     * Creates an object for representing Luis with 170lb and 68(inch)
-     */
+import org.w3c.dom.Text;
+
+public class UserProfile extends AppCompatActivity {
+    private TextInputEditText w;
+    private TextInputEditText h;
+    private TextView bmi;
+    private Button calculate;
+    private double height, weight;
     public UserProfile(){
         weight = 170;
         height = 68;
-        name = "Luis";
     }
-    /**
-     * Creates a valid User
-     * @param name name of user
-     * @param weight weight of user 
-     * @param height height of user
-     */
-    public UserProfile(String name, double weight, double height){
-        this.name = name;
-        this.weight = weight;
+    public UserProfile(double weight, double height){
         this.height = height;
-        
+        this.weight = weight;
     }
-    /**
-     * Calculates the Body Mass Index(BMI) of User.
-     * @param weight weight of user
-     * @param height height of user
-     * @return the BMI of user
-     */
     private double calcBMI(double weight, double height){
         return(703*(weight/(height*height)));
     }
-    /**
-     * Gives a double representing the current Weight
-     * @return the User's current Weight
-     */
     public double getWeight(){
         return weight;
     }
-    /**
-     * Gives a double representing the current Height
-     * @return the User's current Height
-     */
     public double getHeight(){
         return height;
     }
-    /**
-     * Gives a string representing the current name
-     * @return  the User's Current Name
-     */
-    public String getName(){
-        return name;
+    public double getBMI(){
+        return calcBMI(getWeight(),getHeight());
     }
-    /**
-     * Gives a double representing the current BMI
-     * @return the User's Current BMI
-     */
-    public double getBMI() {
-        return calcBMI(getWeight(), getHeight());
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        calculate = findViewById(R.id.calc);
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                h = findViewById(R.id.h);
+                w = findViewById(R.id.w);
+                String he = h.getText().toString();
+                String we = w.getText().toString();
+
+                    if (!he.isEmpty()) {
+                        if (!we.isEmpty()) {
+                            {
+                                double hei = Double.parseDouble(he);
+                                double wei = Double.parseDouble(we);
+                                UserProfile user = new UserProfile(wei, hei);
+                                bmi = findViewById(R.id.bmi);
+                                bmi.setText(String.valueOf(user.getBMI()));
+
+                            }
+                        }
+                    }
+            }
+        });
+
+
     }
 
-    /*public boolean isSober(bacCalculator current){
-        if (current.getBAC() > 0)
-            return false;
-        return true;
-    }*/
+
+
+
+
 }
