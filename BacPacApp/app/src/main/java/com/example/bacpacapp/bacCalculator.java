@@ -58,9 +58,10 @@ public class bacCalculator {
     }
 
     public static long getTimeLeft(){
-        long timeLeft;
-        long tmpBAC = (long) getBAC();
-        timeLeft = (long) (tmpBAC / 1.5);
-        return timeLeft * 60000;
+        float timeLeft;
+        timeLeft = (float) (getBAC()/.015);
+        return (long) timeLeft * 3600000;
     }
+
+    //divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)
 }
