@@ -61,6 +61,6 @@ public class bacCalculator {
         long timeLeft;
         long tmpBAC = (long) getBAC();
         timeLeft = (long) (tmpBAC / 1.5);
-        return timeLeft * 60;
+        return timeLeft * 60000;
     }
 }

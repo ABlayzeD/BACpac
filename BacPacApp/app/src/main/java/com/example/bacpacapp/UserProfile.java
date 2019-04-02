@@ -1,4 +1,4 @@
-package com.example.bacpac;
+package com.example.bacpacapp;
 
 import android.nfc.Tag;
 import android.support.design.widget.TextInputEditText;
@@ -40,10 +40,11 @@ public class UserProfile extends AppCompatActivity {
     public double getBMI(){
         return calcBMI(getWeight(),getHeight());
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user);
         calculate = findViewById(R.id.calc);
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override

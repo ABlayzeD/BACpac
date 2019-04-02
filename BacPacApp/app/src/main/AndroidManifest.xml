@@ -15,7 +15,7 @@
         <activity android:name=".WineActivity" />
         <activity android:name=".BeerActivity" />
         <activity android:name=".CustomDrinkActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".UserProfile" />
         <activity android:name=".GLoginActivity"/>
 
         <activity android:name=".SplashActivity">

@@ -67,23 +67,28 @@ public class BACActivity extends AppCompatActivity {
             }
         });
 
-        new CountDownTimer(  60000,1000) {
-            @Override
-            public void onTick(long millisInFuture) {
-                timerVal = Long.toString(millisInFuture/60000) + Long.toString(millisInFuture/1000);
-                timerDisplay.setText(timerVal);
-                BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
-                if((millisInFuture/1000) % 5 == 0)
-                    bacCalculator.addFiveMinutes();
-            }
+        if(bacCalculator.getBAC() > 0) {
+            new CountDownTimer(6000, 1000) {
+                @Override
+                public void onTick(long millisInFuture) {
+                    timerVal = Long.toString(millisInFuture / 1000);
+                    timerDisplay.setText(timerVal);
+                    BACDisplay = findViewById(R.id.BACDisplay);
+                    BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
+                    if ((millisInFuture / 1000) % 5 == 0)
+                        bacCalculator.addFiveMinutes();
+                }
 
-            @Override
-            public void onFinish() {
-                bacCalculator.resetBAC();
-                timerVal = "Congrats You Are Sober!!";
-                timerDisplay.setText(timerVal);
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    bacCalculator.resetBAC();
+                    timerVal = "Congrats You Are Sober!!";
+                    BACDisplay = findViewById(R.id.BACDisplay);
+                    BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
+                    timerDisplay.setText(timerVal);
+                }
+            }.start();
+        }
 
     }
 
@@ -101,13 +106,13 @@ public class BACActivity extends AppCompatActivity {
     }
 
     private void goToProfile() {
-        Intent intent = new Intent(BACActivity.this, ProfileActivity.class);
+        Intent intent = new Intent(BACActivity.this, UserProfile.class);
         startActivity(intent);
         finish();
     }
 
     private void refresh() {
-        BACDisplay = findViewById(R.id.BACDisplay);
-        BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
+        Intent intent = new Intent(BACActivity.this, BACActivity.class);
+        startActivity(intent);
     }
 }
