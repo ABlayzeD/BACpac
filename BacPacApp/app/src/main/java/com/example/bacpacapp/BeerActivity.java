@@ -28,12 +28,21 @@ public class BeerActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(BeerActivity.this,"beers.csv");
+        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(BeerActivity.this,"Beers.csv");
 
-        for(Drink adrink:drinkList) {
+        for(final Drink adrink:drinkList) {
             Button dynamicDrinkButton = new Button(this);
             dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
             LL.addView(dynamicDrinkButton, params);
+            dynamicDrinkButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bacCalculator.addDrinkToBAC(adrink.AlContent, adrink.volume);
+                    Intent intent = new Intent(BeerActivity.this, BACActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
     }
     private void cancel() {
