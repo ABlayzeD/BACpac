@@ -7,17 +7,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class WineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wine);
-        String names[]={"aWine1","aWine2","aWine3","aWine4"};
-        Button listOfDrinks[]=new Button[4];
-        LinearLayout LL = (LinearLayout)findViewById(R.id.buttonlayout);
+        LinearLayout LL = (LinearLayout)findViewById(R.id.buttonlayout3);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "wines.csv");
+
+        for(Drink adrink:drinkList) { //should be a while loop
+            Button dynamicDrinkButton = new Button(this);
+            dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
+            LL.addView(dynamicDrinkButton, params);
+        }
 
         Button cancelButton=findViewById(R.id.cancel2);
         cancelButton.setText("Cancel");
@@ -28,11 +36,6 @@ public class WineActivity extends AppCompatActivity {
             }
         });
 
-        for(int i=0;i<4;i++) { //should be a while loop
-            listOfDrinks[i] = new Button(this);
-            listOfDrinks[i].setText(names[i]);
-            LL.addView(listOfDrinks[i], params);
-        }
     }
     private void cancel() {
         Intent intent = new Intent(WineActivity.this, DrinksActivity.class);

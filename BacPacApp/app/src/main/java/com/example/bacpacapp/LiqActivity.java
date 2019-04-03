@@ -7,19 +7,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class LiqActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liq);
-        String names[]={"aLiquor1","aLiquor2","aLiquor3","aLiquor4"};
-        Button listOfDrinks[]=new Button[4];
-        LinearLayout LL = (LinearLayout)findViewById(R.id.buttonlayout);
+        LinearLayout LL = (LinearLayout) findViewById(R.id.buttonlayout2);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        Button cancelButton=findViewById(R.id.cancel);
+        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(LiqActivity.this, "liquors.csv");
+
+        for(Drink adrink:drinkList) { //should be a while loop
+            Button dynamicDrinkButton = new Button(this);
+            dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
+            LL.addView(dynamicDrinkButton, params);
+        }
+
+        Button cancelButton = findViewById(R.id.cancel);
         cancelButton.setText("Cancel");
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,12 +35,6 @@ public class LiqActivity extends AppCompatActivity {
                 cancel();
             }
         });
-
-        for(int i=0;i<4;i++) { //should be a while loop
-            listOfDrinks[i] = new Button(this);
-            listOfDrinks[i].setText(names[i]);
-            LL.addView(listOfDrinks[i], params);
-        }
     }
     private void cancel() {
         Intent intent = new Intent(LiqActivity.this, DrinksActivity.class);
