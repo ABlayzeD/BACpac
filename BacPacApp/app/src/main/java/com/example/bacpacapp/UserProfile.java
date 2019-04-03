@@ -22,40 +22,38 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 public class UserProfile extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
-    private TextInputEditText w;
+    private TextInputEditText weightTV;
     private TextView nameTV;
     private TextView emailTV;
-    private TextInputEditText h;
+    private TextInputEditText heightTV;
     private TextView bmi;
     private Button calculate;
-    private double height, weight;
+    private double height, weight, uBMI;
 
     public UserProfile() {
-        weight = 170;
-        height = 68;
+        weight = 0;
+        height = 0;
+        uBMI = getBMI();
     }
-
     public UserProfile(double weight, double height) {
         this.height = height;
         this.weight = weight;
+        this.uBMI = getBMI();
     }
-
     private double calcBMI(double weight, double height) {
         return (703 * (weight / (height * height)));
     }
-
     public double getWeight() {
         return weight;
     }
-
+    public void setWeight(double weight){this.weight = weight;}
     public double getHeight() {
         return height;
     }
-
+    public void setHeight(double height){this.height = height;}
     public double getBMI() {
         return calcBMI(getWeight(), getHeight());
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,37 +67,25 @@ public class UserProfile extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(UserProfile.this);
         if (acct != null){
             String personName= acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            String personFamilyName = acct.getFamilyName();
             String personEmail = acct.getEmail();
-            String personId = acct.getId();
             nameTV.setText("Name: "+personName);
             emailTV.setText("Email: "+personEmail);
         }
+        heightTV = findViewById(R.id.h);
+        weightTV = findViewById(R.id.w);
+        heightTV.setText(String.valueOf(getHeight()));
+        weightTV.setText(String.valueOf(getWeight()));
         calculate = findViewById(R.id.calc);
-
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                h = findViewById(R.id.h);
-                w = findViewById(R.id.w);
-                String he = h.getText().toString();
-                String we = w.getText().toString();
-
-                if (!he.isEmpty()) {
-                    if (!we.isEmpty()) {
-                        {
-                            double hei = Double.parseDouble(he);
-                            double wei = Double.parseDouble(we);
-                            UserProfile user = new UserProfile(wei, hei);
-                            bmi = findViewById(R.id.bmi);
-                            bmi.setText(String.valueOf(user.getBMI()));
-
-                        }
-                    }
-                }
+                double heightD = Double.parseDouble(heightTV.getText().toString());
+                double weightD = Double.parseDouble(weightTV.getText().toString());
+                setWeight(weightD);
+                setHeight(heightD);
+                bmi = findViewById(R.id.bmi);
+                bmi.setText(String.valueOf(getBMI()));
             }
         });
-
     }
 }
