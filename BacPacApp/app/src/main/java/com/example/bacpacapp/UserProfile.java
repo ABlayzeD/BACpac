@@ -54,6 +54,14 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        Button cancelButton=findViewById(R.id.cancel4);
+        cancelButton.setText("Back");
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel();
+            }
+        });
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -79,5 +87,10 @@ public class UserProfile extends AppCompatActivity {
                 weightTV.setText(String.valueOf(weight));
             }
         });
+    }
+    private void cancel() {
+        Intent intent = new Intent(UserProfile.this, BACActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
