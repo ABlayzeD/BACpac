@@ -30,8 +30,8 @@ public class UserProfile extends AppCompatActivity {
     private double height, weight;
 
     public UserProfile() {
-        weight = 0;
-        height = 0;
+        weight = 170;
+        height = 68;
     }
     public UserProfile(double weight, double height) {
         this.height = height;
