@@ -68,13 +68,10 @@ public class BACActivity extends AppCompatActivity {
         });
 
         if(bacCalculator.getBAC() > 0) {
-            new CountDownTimer( bacCalculator.getTimeLeft(), 1000) {
+            new CountDownTimer(6000, 1000) {
                 @Override
                 public void onTick(long millisInFuture) {
-                    int hour = (int) (millisInFuture / 3600000);
-                    int min = (int) ((millisInFuture - (3600000 * hour)) / 60000);
-                    int secs = (int) (((millisInFuture - (3600000 * hour) )- (60000 * min))/ 1000);
-                    timerVal = hour + ":" + min + ":" + secs;
+                    timerVal = Long.toString(millisInFuture / 1000);
                     timerDisplay.setText(timerVal);
                     BACDisplay = findViewById(R.id.BACDisplay);
                     BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
