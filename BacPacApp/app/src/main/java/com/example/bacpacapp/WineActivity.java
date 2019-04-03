@@ -19,13 +19,6 @@ public class WineActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "wines.csv");
-
-        for(Drink adrink:drinkList) { //should be a while loop
-            Button dynamicDrinkButton = new Button(this);
-            dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
-            LL.addView(dynamicDrinkButton, params);
-        }
 
         Button cancelButton=findViewById(R.id.cancel2);
         cancelButton.setText("Cancel");
@@ -35,6 +28,15 @@ public class WineActivity extends AppCompatActivity {
                 cancel();
             }
         });
+
+        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "wines.csv");
+        for(Drink adrink:drinkList) {
+            Button dynamicDrinkButton = new Button(this);
+            dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
+            LL.addView(dynamicDrinkButton, params);
+        }
+
+
 
     }
     private void cancel() {

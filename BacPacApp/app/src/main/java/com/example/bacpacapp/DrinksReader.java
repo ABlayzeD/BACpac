@@ -19,10 +19,11 @@ class DrinksReader {
         try {
             Reader reader = new InputStreamReader(activity.getAssets().open(nameOfFile));
             CSVReader csvReader = new CSVReader(reader,',','/',1);
-            String[] values;
-            while((values=csvReader.readNext())  != null) {
-                    values = csvReader.readNext();
+            String[] values=csvReader.readNext();
+            values = csvReader.readNext();
+            while(values  != null) {
                     DrinkList.add(new Drink(values[0], Double.parseDouble(values[1])));
+                    values = csvReader.readNext();
             }
             csvReader.close();
         }catch(IOException e){
