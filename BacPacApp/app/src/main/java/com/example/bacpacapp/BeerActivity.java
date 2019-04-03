@@ -1,7 +1,6 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +10,12 @@ import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BeerActivity extends AppCompatActivity {
 
@@ -54,7 +48,7 @@ public class BeerActivity extends AppCompatActivity {
                 cancel();
             }
         });
-        ArrayList<Drink> beerList=this.pullBeerFromCSV("./assets/beers.csv");
+        ArrayList<Drink> beerList=this.pullBeerFromCSV("beers.csv");
 
 
 
@@ -74,16 +68,18 @@ public class BeerActivity extends AppCompatActivity {
     private ArrayList<Drink> pullBeerFromCSV(String nameOfFile){
         ArrayList<Drink> DrinkList=new ArrayList<>();
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(nameOfFile));
-            CSVReader csvReader = new CSVReader(reader);
-            String[] values=csvReader.readNext();
+            Reader reader = new InputStreamReader(getAssets().open(nameOfFile));
+            CSVReader csvReader = new CSVReader(reader,',','/',1);
+            String[] values;
             while((values=csvReader.readNext())  != null) {
                 values = csvReader.readNext();
                 DrinkList.add(new Drink(values[0], Double.parseDouble(values[1])));
+
             }
             csvReader.close();
         }catch(IOException e){
-            Toast.makeText(BeerActivity.this, "FAILED TO LOAD CSV", Toast.LENGTH_LONG).show();
+            Path pathToFile = Paths.get(nameOfFile);
+            Toast.makeText(BeerActivity.this, getAssets().toString(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
