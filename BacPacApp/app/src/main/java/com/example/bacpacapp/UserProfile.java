@@ -65,7 +65,7 @@ public class UserProfile extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        //nameTV = findViewById(R.id.name);
+        nameTV = findViewById(R.id.name);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(UserProfile.this);
         if (acct != null){
             String personName= acct.getDisplayName();
