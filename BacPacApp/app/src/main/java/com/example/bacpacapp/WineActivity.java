@@ -30,10 +30,20 @@ public class WineActivity extends AppCompatActivity {
         });
 
         ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "wines.csv");
-        for(Drink adrink:drinkList) {
-            Button dynamicDrinkButton = new Button(this);
-            dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
-            LL.addView(dynamicDrinkButton, params);
+        Button[] drinkButtonList=new Button[drinkList.size()];
+        int counter=0;
+        for (final Drink adrink : drinkList) {
+            drinkButtonList[counter]= new Button(this);
+            drinkButtonList[counter].setText(adrink.name + "|" + adrink.AlContent);
+            drinkButtonList[counter].setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bacCalculator.addDrinkToBAC(adrink.getAlContent(), Drink.getVolume());
+                    userDrank();
+                }
+            }));
+            LL.addView(drinkButtonList[counter], params);
+            counter++;
         }
 
 
@@ -41,6 +51,11 @@ public class WineActivity extends AppCompatActivity {
     }
     private void cancel() {
         Intent intent = new Intent(WineActivity.this, DrinksActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    private void userDrank() {
+        Intent intent = new Intent(WineActivity.this, BACActivity.class);
         startActivity(intent);
         finish();
     }

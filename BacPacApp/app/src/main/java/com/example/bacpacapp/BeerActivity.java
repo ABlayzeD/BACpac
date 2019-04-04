@@ -15,11 +15,11 @@ public class BeerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer);
-        LinearLayout LL = (LinearLayout)findViewById(R.id.buttonlayout);
+        LinearLayout LL = (LinearLayout) findViewById(R.id.buttonlayout);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        Button cancelButton=findViewById(R.id.cancel3);
+        Button cancelButton = findViewById(R.id.cancel3);
         cancelButton.setText("Cancel");
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,20 +28,34 @@ public class BeerActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(BeerActivity.this,"beers.csv");
+        ArrayList<Drink> drinkList = DrinksReader.pullDrinkFromCSV(BeerActivity.this, "beers.csv");
+        Button[] drinkButtonList=new Button[drinkList.size()];
+        int counter=0;
+        for (final Drink adrink : drinkList) {
+            drinkButtonList[counter]= new Button(this);
+            drinkButtonList[counter].setText(adrink.name + "|" + adrink.AlContent);
+            drinkButtonList[counter].setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bacCalculator.addDrinkToBAC(adrink.getAlContent(), Drink.getVolume());
+                    userDrank();
+                }
+            }));
+            LL.addView(drinkButtonList[counter], params);
+            counter++;
 
-        for(Drink adrink:drinkList) {
-            Button dynamicDrinkButton = new Button(this);
-            dynamicDrinkButton.setText(adrink.name+"|"+adrink.AlContent);
-            LL.addView(dynamicDrinkButton, params);
         }
     }
+
     private void cancel() {
         Intent intent = new Intent(BeerActivity.this, DrinksActivity.class);
         startActivity(intent);
         finish();
     }
-
-
-
+    private void userDrank() {
+        Intent intent = new Intent(BeerActivity.this, BACActivity.class);
+        startActivity(intent);
+        finish();
     }
+
+}
