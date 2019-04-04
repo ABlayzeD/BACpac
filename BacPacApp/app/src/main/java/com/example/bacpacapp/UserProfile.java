@@ -38,7 +38,7 @@ public class UserProfile extends AppCompatActivity {
         this.weight = weight;
     }
     private double calcBMI(double weight, double height) {
-        return (703 * (weight / (height * height)));
+        return  (703 * (weight / (height * height)));
     }
     public double getWeight() {
         return weight;
@@ -48,8 +48,8 @@ public class UserProfile extends AppCompatActivity {
         return height;
     }
     public void setHeight(double height){this.height = height;}
-    public double getBMI() {
-        return calcBMI(getWeight(), getHeight());
+    public float getBMI() {
+        return (float) calcBMI(getWeight(), getHeight());
     }@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

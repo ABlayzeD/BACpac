@@ -2,16 +2,16 @@ package com.example.bacpacapp;
 
 class Drink {
         String name;
-        static double AlContent;
-        static double volume=12;
-        Drink(String name,double AlContent){
+        static float AlContent;
+        static float volume=12;
+        Drink(String name,float AlContent){
             this.name=name;
             this.AlContent=AlContent;
         }
-        static double getVolume(){
+        static float getVolume(){
             return volume;
         }
-        static double getAlContent(){
+        static float getAlContent(){
             return AlContent;
         }
 

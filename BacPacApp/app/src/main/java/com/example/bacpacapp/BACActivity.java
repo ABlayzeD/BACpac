@@ -37,7 +37,7 @@ public class BACActivity extends AppCompatActivity {
         timerDisplay.setText(timerVal);
 
         BACDisplay = findViewById(R.id.BACDisplay);
-        BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
+        BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
 
         profile = findViewById(R.id.ProfileButton);
         profile.setText("Profile");
@@ -77,7 +77,7 @@ public class BACActivity extends AppCompatActivity {
                     timerVal = hour + ":" + min + ":" + secs;
                     timerDisplay.setText(timerVal);
                     BACDisplay = findViewById(R.id.BACDisplay);
-                    BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
+                    BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
                     if ((millisInFuture / 1000) % 5 == 0)
                         bacCalculator.addFiveMinutes();
                 }
@@ -87,7 +87,7 @@ public class BACActivity extends AppCompatActivity {
                     bacCalculator.resetBAC();
                     timerVal = "Congrats You Are Sober!!";
                     BACDisplay = findViewById(R.id.BACDisplay);
-                    BACDisplay.setText(String.format("%.2f", bacCalculator.getBAC()));
+                    BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
                     timerDisplay.setText(timerVal);
                 }
             }.start();

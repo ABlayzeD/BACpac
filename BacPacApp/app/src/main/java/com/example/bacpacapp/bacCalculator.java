@@ -31,7 +31,7 @@ public class bacCalculator {
      * @param percentAlc
      * @param fluidOunces
      */
-    public static void addDrinkToBAC(double percentAlc, double fluidOunces)
+    public static void addDrinkToBAC(float percentAlc, float fluidOunces)
     {
         ouncesAlc = ouncesAlc.add((BigDecimal.valueOf((percentAlc/100) * fluidOunces)));
         totalOunces = totalOunces.add(BigDecimal.valueOf(fluidOunces));
@@ -44,9 +44,9 @@ public class bacCalculator {
         timePassed.add(BigDecimal.valueOf(5));
     }
 
-    public static double getBAC()
+    public static float getBAC()
     {
-        return BAC.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        return BAC.setScale(3,BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
     public static void resetBAC(){

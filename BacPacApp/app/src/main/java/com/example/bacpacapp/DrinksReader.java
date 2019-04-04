@@ -22,7 +22,7 @@ class DrinksReader {
             String[] values=csvReader.readNext();
             values = csvReader.readNext();
             while(values  != null) {
-                    DrinkList.add(new Drink(values[0], Double.parseDouble(values[1])));
+                    DrinkList.add(new Drink(values[0], Float.parseFloat(values[1])));
                     values = csvReader.readNext();
             }
             csvReader.close();

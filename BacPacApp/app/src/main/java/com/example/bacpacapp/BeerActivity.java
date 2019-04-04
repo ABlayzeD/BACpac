@@ -28,7 +28,7 @@ public class BeerActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Drink> drinkList = DrinksReader.pullDrinkFromCSV(BeerActivity.this, "beers.csv");
+        ArrayList<Drink> drinkList = DrinksReader.pullDrinkFromCSV(BeerActivity.this, "Beers.csv");
         Button[] drinkButtonList=new Button[drinkList.size()];
         int counter=0;
         for (final Drink adrink : drinkList) {

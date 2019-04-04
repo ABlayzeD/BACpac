@@ -29,7 +29,7 @@ public class LiqActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(LiqActivity.this, "liquors.csv");
+        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(LiqActivity.this, "Liquors.csv");
         Button[] drinkButtonList=new Button[drinkList.size()];
         int counter=0;
         for (final Drink adrink : drinkList) {
@@ -38,7 +38,7 @@ public class LiqActivity extends AppCompatActivity {
             drinkButtonList[counter].setOnClickListener((new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    bacCalculator.addDrinkToBAC(adrink.getAlContent(), Drink.getVolume());
+                    bacCalculator.addDrinkToBAC(adrink.getAlContent(), Drink.getVolume() - 10);
                     userDrank();
                 }
             }));

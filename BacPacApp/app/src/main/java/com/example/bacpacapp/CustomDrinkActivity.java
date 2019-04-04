@@ -37,7 +37,7 @@ public class CustomDrinkActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(percentAlc != null && ounces != null && numberDrank != null)
+                if(percentAlc.getText() != null && ounces.getText() != null && numberDrank.getText() != null)
                     addDrink();
                 else
                     Toast.makeText(CustomDrinkActivity.this, "Complete All Fields", Toast.LENGTH_LONG).show();
@@ -53,9 +53,9 @@ public class CustomDrinkActivity extends AppCompatActivity {
 
     private void addDrink() {
         for(int i = Integer.parseInt(numberDrank.getText().toString()); i != 0; i--){
-            bacCalculator.addDrinkToBAC(Double.parseDouble(percentAlc.getText().toString()), Double.parseDouble(ounces.getText().toString()));
+            bacCalculator.addDrinkToBAC(Float.parseFloat(percentAlc.getText().toString()), Float.parseFloat(ounces.getText().toString()));
         }
-        Intent intent = new Intent(CustomDrinkActivity.this , DrinksActivity.class);
+        Intent intent = new Intent(CustomDrinkActivity.this , BACActivity.class);
         startActivity(intent);
         finish();
     }
