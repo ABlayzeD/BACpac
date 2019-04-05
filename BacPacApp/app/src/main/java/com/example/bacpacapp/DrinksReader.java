@@ -20,16 +20,13 @@ class DrinksReader {
             Reader reader = new InputStreamReader(activity.getAssets().open(nameOfFile));
             CSVReader csvReader = new CSVReader(reader,',','/',1);
             String[] values=csvReader.readNext();
-            values = csvReader.readNext();
-            while(values  != null) {
-                    DrinkList.add(new Drink(values[0], Float.parseFloat(values[1])));
-                    values = csvReader.readNext();
+            while((values=csvReader.readNext())  != null) {
+                    DrinkList.add(new Drink(values[0], values[1]));
             }
             csvReader.close();
         }catch(IOException e){
             e.printStackTrace();
         }
-
 
         return DrinkList;
     }
