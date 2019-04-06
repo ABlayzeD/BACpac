@@ -19,8 +19,9 @@ class DrinksReader {
         try {
             Reader reader = new InputStreamReader(activity.getAssets().open(nameOfFile));
             CSVReader csvReader = new CSVReader(reader,',','/',1);
-            String[] values=csvReader.readNext();
+            String[] values;
             while((values=csvReader.readNext())  != null) {
+                System.out.println(values[0]+", "+values[1]);
                     DrinkList.add(new Drink(values[0], values[1]));
             }
             csvReader.close();
