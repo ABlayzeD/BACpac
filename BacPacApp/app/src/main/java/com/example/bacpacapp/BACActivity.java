@@ -2,15 +2,18 @@ package com.example.bacpacapp;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.uber.sdk.android.core.UberSdk;
+import com.uber.sdk.android.rides.RideRequestButton;
+import com.uber.sdk.core.auth.Scope;
+import com.uber.sdk.core.client.SessionConfiguration;
 
 public class BACActivity extends AppCompatActivity {
     ConstraintLayout HomeActivity;
@@ -22,7 +25,8 @@ public class BACActivity extends AppCompatActivity {
     Button addDrink;
     Button refresh;
     bacCalculator BAC;
-
+    TextView warnerText;
+    RideRequestButton uberButton;
 
 
 
@@ -33,17 +37,30 @@ public class BACActivity extends AppCompatActivity {
         TextView BACHeader = findViewById(R.id.BACHeader);
         BACHeader.setText("Current BAC");
 
-        // init constraintLayout
+        SessionConfiguration config = new SessionConfiguration.Builder()
+                // mandatory
+                .setClientId("T22JNnaxpssR4mBOu4sglqRdI9UXByGX")
+                // required for enhanced button features
+                .setServerToken("xvutZjeuFfA8gvcWfp5sLoDxw622MVVrzzcq78KL")
+                .build();
+        UberSdk.initialize(config);
+
+
+
         HomeActivity = findViewById(R.id.HomeActivity);
 
-        // initializing animation drawable by getting background from constraint layout
+        warnerText = findViewById(R.id.Warner);
+        uberButton = findViewById(R.id.uberButton);
+        uberButton.setVisibility(View.INVISIBLE);
+        warnerText.setText("Going somewhere?");
+        warnerText.setVisibility(View.INVISIBLE);
+        // initializing animation
         geauxTigers = (AnimationDrawable) HomeActivity.getBackground();
         HomeActivity.setBackground(null);
-        // setting enter fade animation duration to 5 seconds
+        // enter fade animation duration 5 seconds
         geauxTigers.setEnterFadeDuration(5000);
-        // setting exit fade animation duration to 2 seconds
+        // exit fade animation duration 1 second
         geauxTigers.setExitFadeDuration(1000);
-        geauxTigers.setVisible(false, true);
 
         TextView TimeHeader = findViewById(R.id.TimeHeader);
         TimeHeader.setText("Time Left Till Sober:");
@@ -77,6 +94,12 @@ public class BACActivity extends AppCompatActivity {
 
         if (bacCalculator.getBAC() > 0) {
             HomeActivity.setBackground(geauxTigers);;
+            uberButton.setVisibility(View.VISIBLE);
+            warnerText.setVisibility(View.VISIBLE);
+            /**
+             * This is the countdown timer for the time left till BAC = 0. It is called from the addDrinktoBAC
+             * method so that it starts the timer each time a drink is added by the user.
+             */
             new CountDownTimer(bacCalculator.getTimeLeft(), 1000) {
                 @Override
                 public void onTick(long millisInFuture) {
@@ -87,15 +110,15 @@ public class BACActivity extends AppCompatActivity {
                     timerDisplay.setText(timerVal);
                     BACDisplay = findViewById(R.id.BACDisplay);
                     BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
-                    if ((millisInFuture / 60000) % 5 == 0) {
+                    if ((millisInFuture / 60000) % 5 == 0)
                         bacCalculator.addFiveMinutes();
-                        BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
-                    }
                 }
 
                 @Override
                 public void onFinish() {
                     HomeActivity.setBackground(null);
+                    uberButton.setVisibility(View.INVISIBLE);
+                    warnerText.setVisibility(View.INVISIBLE);
                     bacCalculator.resetBAC();
                     timerVal = "Congrats You Are Sober!!";
                     BACDisplay = findViewById(R.id.BACDisplay);
@@ -123,12 +146,6 @@ public class BACActivity extends AppCompatActivity {
             geauxTigers.stop();
         }
     }
-
-
-    /**
-     * This is the countdown timer for the time left till BAC = 0. It is called from the addDrinktoBAC
-     * method so that it starts the timer each time a drink is added by the user.
-     */
 
 
     private void goToDrinks() {
