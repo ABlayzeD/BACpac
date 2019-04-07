@@ -1,10 +1,12 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -14,7 +16,6 @@ public class WineActivity extends AppCompatActivity {
 
     Button[] drinkButtonList;
     int counter;
-    Animation buttonAnim;
     Button cancelButton;
     LinearLayout LL;
     ArrayList<Drink> drinkList;
@@ -50,7 +51,6 @@ public class WineActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     bacCalculator.addDrinkToBAC(AlContent, Drink.getVolume() - 7);
-                    drinkButtonList[counter].startAnimation(buttonAnim);
                     userDrank();
                 }
             }));

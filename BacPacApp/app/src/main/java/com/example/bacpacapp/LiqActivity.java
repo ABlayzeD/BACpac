@@ -1,6 +1,7 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,7 +53,6 @@ public class LiqActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     bacCalculator.addDrinkToBAC(AlContent, Drink.getVolume()- 10);
-                    drinkButtonList[counter].startAnimation(buttonAnim);
                     userDrank();
                 }
             }));

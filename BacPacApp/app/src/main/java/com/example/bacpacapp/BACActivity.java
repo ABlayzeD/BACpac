@@ -31,6 +31,8 @@ public class BACActivity extends AppCompatActivity {
     bacCalculator BAC;
     TextView warnerText;
     RideRequestButton uberButton;
+    Animation buttonAnim2;
+    Animation buttonAnim3;
 
 
 
@@ -50,7 +52,10 @@ public class BACActivity extends AppCompatActivity {
         UberSdk.initialize(config);
 
 
-        buttonAnim= AnimationUtils.loadAnimation(this,R.anim.bounce);
+        buttonAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        buttonAnim2 = AnimationUtils.loadAnimation(BACActivity.this, R.anim.fadein);
+        buttonAnim3 = AnimationUtils.loadAnimation(BACActivity.this, R.anim.fadein);
+
         HomeActivity = findViewById(R.id.HomeActivity);
         warnerText = findViewById(R.id.Warner);
         uberButton = findViewById(R.id.uberButton);
@@ -110,9 +115,17 @@ public class BACActivity extends AppCompatActivity {
 
 
         if (bacCalculator.getBAC() > 0) {
-            HomeActivity.setBackground(geauxTigers);;
-            uberButton.setVisibility(View.VISIBLE);
+            HomeActivity.setBackground(geauxTigers);
             warnerText.setVisibility(View.VISIBLE);
+            warnerText.startAnimation(buttonAnim2);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    uberButton.setVisibility(View.VISIBLE);
+                    uberButton.startAnimation(buttonAnim3);
+                }
+            }, 3000);
+
             /**
              * This is the countdown timer for the time left till BAC = 0. It is called from the addDrinktoBAC
              * method so that it starts the timer each time a drink is added by the user.
@@ -144,8 +157,8 @@ public class BACActivity extends AppCompatActivity {
                 }
             }.start();
         }
-
     }
+
     protected void onResume() {
         super.onResume();
         if (geauxTigers != null && !geauxTigers.isRunning()) {
