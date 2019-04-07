@@ -43,8 +43,7 @@ public class BACActivity extends AppCompatActivity {
         profile.setText("Profile");
         addDrink = findViewById(R.id.AddDrinkButton);
         addDrink.setText("+Drink");
-        refresh = findViewById(R.id.refreshButton);
-        refresh.setText("Refresh");
+
 
         addDrink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,12 +59,6 @@ public class BACActivity extends AppCompatActivity {
             }
         });
 
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                refresh();
-            }
-        });
 
         if(bacCalculator.getBAC() > 0) {
             new CountDownTimer(bacCalculator.getTimeLeft(), 1000) {
@@ -109,13 +102,9 @@ public class BACActivity extends AppCompatActivity {
     }
 
     private void goToProfile() {
-        Intent intent = new Intent(BACActivity.this, UserProfile.class);
+        Intent intent = new Intent(BACActivity.this, UserDisplay.class);
         startActivity(intent);
         finish();
     }
 
-    private void refresh() {
-        Intent intent = new Intent(BACActivity.this, BACActivity.class);
-        startActivity(intent);
-    }
 }
