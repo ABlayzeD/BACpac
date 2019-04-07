@@ -87,8 +87,10 @@ public class BACActivity extends AppCompatActivity {
                     timerDisplay.setText(timerVal);
                     BACDisplay = findViewById(R.id.BACDisplay);
                     BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
-                    if ((millisInFuture / 60000) % 5 == 0)
+                    if ((millisInFuture / 60000) % 5 == 0) {
                         bacCalculator.addFiveMinutes();
+                        BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
+                    }
                 }
 
                 @Override
