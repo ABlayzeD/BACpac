@@ -1,7 +1,9 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.CountDownTimer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class BACActivity extends AppCompatActivity {
-
+    ConstraintLayout HomeActivity;
+    AnimationDrawable geauxTigers;
     EditText timerDisplay;
     EditText BACDisplay;
     String timerVal = "0:00";
@@ -27,10 +30,22 @@ public class BACActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
-        TextView BACHeader=findViewById(R.id.BACHeader);
+        TextView BACHeader = findViewById(R.id.BACHeader);
         BACHeader.setText("Current BAC");
 
-        TextView TimeHeader=findViewById(R.id.TimeHeader);
+        // init constraintLayout
+        HomeActivity = findViewById(R.id.HomeActivity);
+
+        // initializing animation drawable by getting background from constraint layout
+        geauxTigers = (AnimationDrawable) HomeActivity.getBackground();
+        HomeActivity.setBackground(null);
+        // setting enter fade animation duration to 5 seconds
+        geauxTigers.setEnterFadeDuration(5000);
+        // setting exit fade animation duration to 2 seconds
+        geauxTigers.setExitFadeDuration(1000);
+        geauxTigers.setVisible(false, true);
+
+        TextView TimeHeader = findViewById(R.id.TimeHeader);
         TimeHeader.setText("Time Left Till Sober:");
 
         timerDisplay = findViewById(R.id.TimeLeftDisplay);
@@ -60,13 +75,14 @@ public class BACActivity extends AppCompatActivity {
         });
 
 
-        if(bacCalculator.getBAC() > 0) {
+        if (bacCalculator.getBAC() > 0) {
+            HomeActivity.setBackground(geauxTigers);;
             new CountDownTimer(bacCalculator.getTimeLeft(), 1000) {
                 @Override
                 public void onTick(long millisInFuture) {
                     int hour = (int) (millisInFuture / 3600000);
                     int min = (int) ((millisInFuture - (3600000 * hour)) / 60000);
-                    int secs = (int) (((millisInFuture - (3600000 * hour) )- (60000 * min))/ 1000);
+                    int secs = (int) (((millisInFuture - (3600000 * hour)) - (60000 * min)) / 1000);
                     timerVal = hour + ":" + min + ":" + secs;
                     timerDisplay.setText(timerVal);
                     BACDisplay = findViewById(R.id.BACDisplay);
@@ -77,6 +93,7 @@ public class BACActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
+                    HomeActivity.setBackground(null);
                     bacCalculator.resetBAC();
                     timerVal = "Congrats You Are Sober!!";
                     BACDisplay = findViewById(R.id.BACDisplay);
@@ -86,6 +103,23 @@ public class BACActivity extends AppCompatActivity {
             }.start();
         }
 
+    }
+    protected void onResume() {
+        super.onResume();
+        if (geauxTigers != null && !geauxTigers.isRunning()) {
+            // start the animation
+            geauxTigers.start();
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (geauxTigers != null && geauxTigers.isRunning()) {
+            // stop the animation
+            geauxTigers.stop();
+        }
     }
 
 
