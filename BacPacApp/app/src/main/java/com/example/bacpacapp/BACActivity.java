@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +21,7 @@ import com.uber.sdk.core.client.SessionConfiguration;
 public class BACActivity extends AppCompatActivity {
     ConstraintLayout HomeActivity;
     AnimationDrawable geauxTigers;
+    Animation buttonAnim;
     EditText timerDisplay;
     EditText BACDisplay;
     String timerVal = "0:00";
@@ -46,9 +50,8 @@ public class BACActivity extends AppCompatActivity {
         UberSdk.initialize(config);
 
 
-
+        buttonAnim= AnimationUtils.loadAnimation(this,R.anim.bounce);
         HomeActivity = findViewById(R.id.HomeActivity);
-
         warnerText = findViewById(R.id.Warner);
         uberButton = findViewById(R.id.uberButton);
         uberButton.setVisibility(View.INVISIBLE);
@@ -80,14 +83,28 @@ public class BACActivity extends AppCompatActivity {
         addDrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToDrinks();
+                Handler handler = new Handler();
+                addDrink.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToDrinks();
+                    }
+                }, 500);
+
             }
         });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToProfile();
+                Handler handler = new Handler();
+                profile.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToProfile();
+                    }
+                }, 500);
+
             }
         });
 
@@ -155,9 +172,9 @@ public class BACActivity extends AppCompatActivity {
     }
 
     private void goToProfile() {
-        Intent intent = new Intent(BACActivity.this, UserDisplay.class);
-        startActivity(intent);
-        finish();
+            Intent intent = new Intent(BACActivity.this, UserDisplay.class);
+            startActivity(intent);
+            finish();
     }
 
 }

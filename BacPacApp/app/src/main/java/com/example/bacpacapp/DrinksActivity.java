@@ -1,9 +1,12 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,11 +17,13 @@ public class DrinksActivity extends AppCompatActivity {
     Button wineBtn;
     Button liqBtn;
     Button customBtn;
+    Animation buttonAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drinks);
+        buttonAnim= AnimationUtils.loadAnimation(this,R.anim.rotate);
         DrinkHeader=findViewById(R.id.DrinksPageHeader);
         DrinkHeader.setText("Pick a drink!");
         /**
@@ -47,25 +52,49 @@ public class DrinksActivity extends AppCompatActivity {
         beerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToBeer();
+                Handler handler = new Handler();
+                beerBtn.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToBeer();
+                    }
+                }, 510);
             }
         });
         wineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToWine();
+                Handler handler = new Handler();
+                wineBtn.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToWine();
+                    }
+                }, 510);
             }
         });
         liqBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToLiq();
+                Handler handler = new Handler();
+                liqBtn.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToLiq();
+                    }
+                }, 510);
             }
         });
         customBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToCustom();
+                Handler handler = new Handler();
+                customBtn.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToCustom();
+                    }
+                }, 510);
             }
         });
     }

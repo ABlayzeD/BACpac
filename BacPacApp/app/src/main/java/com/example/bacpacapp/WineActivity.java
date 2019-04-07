@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -11,16 +12,23 @@ import java.util.ArrayList;
 
 public class WineActivity extends AppCompatActivity {
 
+    Button[] drinkButtonList;
+    int counter;
+    Animation buttonAnim;
+    Button cancelButton;
+    LinearLayout LL;
+    ArrayList<Drink> drinkList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wine);
-        LinearLayout LL = (LinearLayout)findViewById(R.id.buttonlayout3);
+        LL = findViewById(R.id.buttonlayout3);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
-        Button cancelButton=findViewById(R.id.cancel2);
+        cancelButton=findViewById(R.id.cancel2);
         cancelButton.setText("Cancel");
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,9 +37,9 @@ public class WineActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Drink> drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "Wines.csv");
-        Button[] drinkButtonList=new Button[drinkList.size()];
-        int counter=0;
+        drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "wines.csv");
+        drinkButtonList=new Button[drinkList.size()];
+        counter=0;
         for (Drink adrink : drinkList) {
             final float AlContent=adrink.AlContent;
             drinkButtonList[counter] = new Button(this);
@@ -42,6 +50,7 @@ public class WineActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     bacCalculator.addDrinkToBAC(AlContent, Drink.getVolume() - 7);
+                    drinkButtonList[counter].startAnimation(buttonAnim);
                     userDrank();
                 }
             }));
