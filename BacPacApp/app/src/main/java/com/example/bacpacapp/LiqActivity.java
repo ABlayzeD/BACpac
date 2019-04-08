@@ -40,7 +40,7 @@ public class LiqActivity extends AppCompatActivity {
             }
         });
 
-        drinkList = DrinksReader.pullDrinkFromCSV(LiqActivity.this, "liquors.csv");
+        drinkList = DrinksReader.pullDrinkFromCSV(LiqActivity.this, "Liquors.csv");
         drinkButtonList = new Button[drinkList.size()];
         counter = 0;
         for (Drink adrink : drinkList) {

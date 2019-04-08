@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="8dp"
-        android:text="All Wines Are Assumed To Be 12oz. Servings"
+        android:text="All Wines Are Assumed To Be 7oz. Servings"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

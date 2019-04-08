@@ -38,7 +38,7 @@ public class WineActivity extends AppCompatActivity {
             }
         });
 
-        drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "wines.csv");
+        drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "Wines.csv");
         drinkButtonList=new Button[drinkList.size()];
         counter=0;
         for (Drink adrink : drinkList) {

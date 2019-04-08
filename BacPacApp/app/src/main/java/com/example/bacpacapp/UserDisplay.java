@@ -1,5 +1,6 @@
 package com.example.bacpacapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -12,6 +13,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class UserDisplay extends AppCompatActivity{
     GoogleSignInClient mGoogleSignInClient;
@@ -59,6 +63,7 @@ public class UserDisplay extends AppCompatActivity{
                 bmi.setText(String.valueOf(user.getBMI()));
                 heightTV.setText(String.valueOf(user.getHeight()));
                 weightTV.setText(String.valueOf(user.getWeight()));
+
             }
         });
     }
