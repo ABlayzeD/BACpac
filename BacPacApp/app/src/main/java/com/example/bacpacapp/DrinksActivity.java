@@ -1,7 +1,9 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class DrinksActivity extends AppCompatActivity {
+    ConstraintLayout HomeActivity;
+    AnimationDrawable defaultBackground;
     TextView DrinkHeader;
     Button cancelBtn;
     Button beerBtn;
@@ -23,7 +27,7 @@ public class DrinksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drinks);
-        buttonAnim= AnimationUtils.loadAnimation(this,R.anim.rotate);
+        buttonAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         DrinkHeader=findViewById(R.id.DrinksPageHeader);
         DrinkHeader.setText("Pick a drink!");
         /**
@@ -40,61 +44,51 @@ public class DrinksActivity extends AppCompatActivity {
         customBtn = findViewById(R.id.CustomButton);
         customBtn.setText("Custom");
 
+        HomeActivity = findViewById(R.id.HomeActivity);
+        defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
+        HomeActivity.setBackground(defaultBackground);
+        // enter fade animation duration 5 seconds
+        defaultBackground.setEnterFadeDuration(5000);
+        // exit fade animation duration 1 second
+        defaultBackground.setExitFadeDuration(1000);
+
         /**
          * all listeners for buttons
          */
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goBack();
+                Handler handler = new Handler();
+                cancelBtn.startAnimation(buttonAnim);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goBack();
+                    }
+                }, 500);
             }
         });
         beerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Handler handler = new Handler();
-                beerBtn.startAnimation(buttonAnim);
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        goToBeer();
-                    }
-                }, 510);
+                goToBeer();
             }
         });
         wineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Handler handler = new Handler();
-                wineBtn.startAnimation(buttonAnim);
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        goToWine();
-                    }
-                }, 510);
+                goToWine();
             }
         });
         liqBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Handler handler = new Handler();
-                liqBtn.startAnimation(buttonAnim);
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        goToLiq();
-                    }
-                }, 510);
+                goToLiq();
             }
         });
         customBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Handler handler = new Handler();
-                customBtn.startAnimation(buttonAnim);
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        goToCustom();
-                    }
-                }, 510);
+                goToCustom();
             }
         });
     }

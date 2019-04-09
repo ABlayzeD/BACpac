@@ -15,12 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.uber.sdk.android.core.UberSdk;
 import com.uber.sdk.android.rides.RideRequestButton;
-import com.uber.sdk.core.auth.Scope;
 import com.uber.sdk.core.client.SessionConfiguration;
 
 public class BACActivity extends AppCompatActivity {
     ConstraintLayout HomeActivity;
-    AnimationDrawable geauxTigers;
+    AnimationDrawable defaultBackground;
     Animation buttonAnim;
     EditText timerDisplay;
     EditText BACDisplay;
@@ -63,12 +62,12 @@ public class BACActivity extends AppCompatActivity {
         warnerText.setText("Going somewhere?");
         warnerText.setVisibility(View.INVISIBLE);
         // initializing animation
-        geauxTigers = (AnimationDrawable) HomeActivity.getBackground();
-        HomeActivity.setBackground(null);
+        defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
+        HomeActivity.setBackground(defaultBackground);
         // enter fade animation duration 5 seconds
-        geauxTigers.setEnterFadeDuration(5000);
+        defaultBackground.setEnterFadeDuration(5000);
         // exit fade animation duration 1 second
-        geauxTigers.setExitFadeDuration(1000);
+        defaultBackground.setExitFadeDuration(1000);
 
         TextView TimeHeader = findViewById(R.id.TimeHeader);
         TimeHeader.setText("Time Left Till Sober:");
@@ -94,7 +93,7 @@ public class BACActivity extends AppCompatActivity {
                     public void run() {
                         goToDrinks();
                     }
-                }, 500);
+                }, 100);
 
             }
         });
@@ -108,14 +107,13 @@ public class BACActivity extends AppCompatActivity {
                     public void run() {
                         goToProfile();
                     }
-                }, 500);
+                }, 100);
 
             }
         });
 
 
         if (bacCalculator.getBAC() > 0) {
-            HomeActivity.setBackground(geauxTigers);
             warnerText.setVisibility(View.VISIBLE);
             warnerText.startAnimation(buttonAnim2);
             Handler handler = new Handler();
@@ -146,7 +144,6 @@ public class BACActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    HomeActivity.setBackground(null);
                     uberButton.setVisibility(View.INVISIBLE);
                     warnerText.setVisibility(View.INVISIBLE);
                     bacCalculator.resetBAC();
@@ -161,9 +158,9 @@ public class BACActivity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        if (geauxTigers != null && !geauxTigers.isRunning()) {
+        if (defaultBackground != null && !defaultBackground.isRunning()) {
             // start the animation
-            geauxTigers.start();
+            defaultBackground.start();
         }
 
     }
@@ -171,9 +168,9 @@ public class BACActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (geauxTigers != null && geauxTigers.isRunning()) {
+        if (defaultBackground != null && defaultBackground.isRunning()) {
             // stop the animation
-            geauxTigers.stop();
+            defaultBackground.stop();
         }
     }
 

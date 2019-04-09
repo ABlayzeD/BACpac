@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#00AFBC</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FFFFFF</color>
 
     <!-- 1st Gradient color -->
-    <color name="colorPurple_A400">#D500F9</color>
-    <color name="colorPurple_900">#4A148C</color>
+    <color name="colorPurple_A400">#120f1c</color>
+    <color name="colorPurple_900">#0e003a</color>
     <!-- ./ 1st Gradient color -->
 
     <!-- 2nd Gradient color -->
-    <color name="colorAmber_A400">#FFC400</color>
-    <color name="colorAmber_900">#FF6F00</color>
+    <color name="colorAmber_A400">#000a3a</color>
+    <color name="colorAmber_900">#0e1740</color>
     <!-- ./ 2nd Gradient color -->
 
 </resources>

@@ -1,7 +1,9 @@
 package com.example.bacpacapp;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +14,8 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public class BeerActivity extends AppCompatActivity {
-
+    ConstraintLayout HomeActivity;
+    AnimationDrawable defaultBackground;
     Button[] drinkButtonList;
     int counter;
     Button cancelButton;
@@ -27,6 +30,14 @@ public class BeerActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        HomeActivity = findViewById(R.id.HomeActivity);
+        // initializing animation
+        defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
+        HomeActivity.setBackground(defaultBackground);
+        // enter fade animation duration 5 seconds
+        defaultBackground.setEnterFadeDuration(5000);
+        // exit fade animation duration 1 second
+        defaultBackground.setExitFadeDuration(1000);
 
         cancelButton = findViewById(R.id.cancel3);
         cancelButton.setText("Cancel");
@@ -36,6 +47,7 @@ public class BeerActivity extends AppCompatActivity {
                 cancel();
             }
         });
+
 
         drinkList = DrinksReader.pullDrinkFromCSV(BeerActivity.this, "Beers.csv");
         drinkButtonList=new Button[drinkList.size()];

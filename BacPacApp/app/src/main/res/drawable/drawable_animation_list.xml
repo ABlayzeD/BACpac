@@ -4,6 +4,6 @@
         android:drawable="@drawable/drawable_purple_gradient"
         android:duration="6000" />
     <item
-        android:drawable="@drawable/drawable_gold_gradient"
+        android:drawable="@drawable/drawable_blue_gradient"
         android:duration="6000" />
 </animation-list>
