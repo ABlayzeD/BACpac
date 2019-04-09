@@ -35,7 +35,7 @@ public class bacCalculator {
     {
         ouncesAlc = ouncesAlc.add((BigDecimal.valueOf((percentAlc/100) * fluidOunces)));
         totalOunces = totalOunces.add(BigDecimal.valueOf(fluidOunces));
-        decimalPercentAlc = ouncesAlc.divide(totalOunces, MathContext.DECIMAL32);
+        decimalPercentAlc = ouncesAlc.divide(totalOunces, MathContext.DECIMAL128);
         BAC = (((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32)).subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015))));
     }
 
@@ -58,9 +58,9 @@ public class bacCalculator {
     }
 
     public static long getTimeLeft(){
-        float timeLeft;
-        timeLeft = (float) (getBAC()/.015);
-        return (long) timeLeft * 3600000;
+        BigDecimal timeLeft;
+        timeLeft = BAC.divide(BigDecimal.valueOf(.015),MathContext.DECIMAL128);
+        return timeLeft.multiply(BigDecimal.valueOf(3600000)).longValue();
     }
 
     //divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)

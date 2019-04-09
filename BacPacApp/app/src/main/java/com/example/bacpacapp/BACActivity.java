@@ -17,6 +17,8 @@ import com.uber.sdk.android.core.UberSdk;
 import com.uber.sdk.android.rides.RideRequestButton;
 import com.uber.sdk.core.client.SessionConfiguration;
 
+import java.util.concurrent.TimeUnit;
+
 public class BACActivity extends AppCompatActivity {
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
@@ -131,9 +133,9 @@ public class BACActivity extends AppCompatActivity {
             new CountDownTimer(bacCalculator.getTimeLeft(), 1000) {
                 @Override
                 public void onTick(long millisInFuture) {
-                    int hour = (int) (millisInFuture / 3600000);
-                    int min = (int) ((millisInFuture - (3600000 * hour)) / 60000);
-                    int secs = (int) (((millisInFuture - (3600000 * hour)) - (60000 * min)) / 1000);
+                    long hour = TimeUnit.MILLISECONDS.toHours(millisInFuture);
+                    long min = TimeUnit.MILLISECONDS.toMinutes(millisInFuture) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisInFuture));
+                    long secs = TimeUnit.MILLISECONDS.toSeconds(millisInFuture) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisInFuture));
                     timerVal = hour + ":" + min + ":" + secs;
                     timerDisplay.setText(timerVal);
                     BACDisplay = findViewById(R.id.BACDisplay);
