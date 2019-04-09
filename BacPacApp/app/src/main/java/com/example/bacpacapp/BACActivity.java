@@ -34,6 +34,7 @@ public class BACActivity extends AppCompatActivity {
     RideRequestButton uberButton;
     Animation buttonAnim2;
     Animation buttonAnim3;
+    long secsPassed = 0;
 
 
 
@@ -138,10 +139,11 @@ public class BACActivity extends AppCompatActivity {
                     long secs = TimeUnit.MILLISECONDS.toSeconds(millisInFuture) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisInFuture));
                     timerVal = hour + ":" + min + ":" + secs;
                     timerDisplay.setText(timerVal);
-                    BACDisplay = findViewById(R.id.BACDisplay);
+                    //BACDisplay = findViewById(R.id.BACDisplay);
+                    bacCalculator.updateBAC();
                     BACDisplay.setText(String.format("%.3f", bacCalculator.getBAC()));
-                    if ((millisInFuture / 60000) % 5 == 0)
-                        bacCalculator.addFiveMinutes();
+                    bacCalculator.addMinutes(secsPassed);
+                    secsPassed++;
                 }
 
                 @Override

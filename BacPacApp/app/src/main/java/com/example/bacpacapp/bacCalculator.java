@@ -2,6 +2,7 @@ package com.example.bacpacapp;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.concurrent.TimeUnit;
 
 public class bacCalculator {
     /**
@@ -36,17 +37,21 @@ public class bacCalculator {
         ouncesAlc = ouncesAlc.add((BigDecimal.valueOf((percentAlc/100) * fluidOunces)));
         totalOunces = totalOunces.add(BigDecimal.valueOf(fluidOunces));
         decimalPercentAlc = ouncesAlc.divide(totalOunces, MathContext.DECIMAL128);
-        BAC = (((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32)).subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015))));
+        BAC = (((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32))); //.subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015))));
     }
 
-    public static void addFiveMinutes()
+    public static void addMinutes(long passed)
     {
-        timePassed.add(BigDecimal.valueOf(5));
+        timePassed.add(BigDecimal.valueOf(TimeUnit.SECONDS.toMinutes(passed)));
     }
 
     public static float getBAC()
     {
         return BAC.setScale(3,BigDecimal.ROUND_HALF_UP).floatValue();
+    }
+
+    public static void updateBAC(){
+        BAC = BAC.subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015)));
     }
 
     public static void resetBAC(){
