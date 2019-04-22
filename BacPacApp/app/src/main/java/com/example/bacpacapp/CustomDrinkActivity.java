@@ -10,9 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * This class creates the Custom Drink activity where the user can select a custom drink
+ */
 public class CustomDrinkActivity extends AppCompatActivity {
+    // Declaring animated background
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
+
+    // Declaring page buttons and layouts
     Button cancelBtn;
     Button addBtn;
     EditText percentAlc;
@@ -20,9 +26,17 @@ public class CustomDrinkActivity extends AppCompatActivity {
     EditText numberDrank;
 
 
+    /**
+     * Creates the Custom Drink activity when loaded
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        Sets up the activity layouts and buttons
+         */
         setContentView(R.layout.activity_custom_drink);
 
         cancelBtn = findViewById(R.id.cancelButton2);
@@ -38,6 +52,9 @@ public class CustomDrinkActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        Controls background animation
+         */
         HomeActivity = findViewById(R.id.HomeActivity);
         // initializing animation
         defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
@@ -47,6 +64,9 @@ public class CustomDrinkActivity extends AppCompatActivity {
         // exit fade animation duration 1 second
         defaultBackground.setExitFadeDuration(1000);
 
+        /*
+        Sets up button listeners
+         */
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,12 +78,18 @@ public class CustomDrinkActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Controls what happens when cancel button is clicked
+     */
     private void goBack() {
         Intent intent = new Intent(CustomDrinkActivity.this, BACActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Controls what happens when add button is clicked
+     */
     private void addDrink() {
         for(int i = Integer.parseInt(numberDrank.getText().toString()); i != 0; i--){
             bacCalculator.addDrinkToBAC(Float.parseFloat(percentAlc.getText().toString()), Float.parseFloat(ounces.getText().toString()));

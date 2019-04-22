@@ -15,6 +15,9 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+/**
+ * This class allows users to login using the Google login.
+ */
 public class GLoginActivity extends AppCompatActivity {
 
     int RC_SIGN_IN = 0;

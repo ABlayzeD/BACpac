@@ -12,8 +12,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * This class reads a CSV file to gather drink info of all types
+ */
 class DrinksReader {
 
+    /**
+     * Reads a CSV that contains drink names and info and collects it into an array
+     * @param activity
+     * @param nameOfFile
+     * @return An array of drink names and info
+     */
     static protected ArrayList<Drink> pullDrinkFromCSV(Context activity, String nameOfFile){
         ArrayList<Drink> DrinkList=new ArrayList<>();
         try {

@@ -19,10 +19,19 @@ import com.uber.sdk.core.client.SessionConfiguration;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class creates the Home activity where the user can view their current BAC and time left
+ * And the user can navigate to the user profile and drink page
+ */
 public class BACActivity extends AppCompatActivity {
+    // Declaring animated aspects
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
     Animation buttonAnim;
+    Animation buttonAnim2;
+    Animation buttonAnim3;
+
+    // Declaring page buttons and layouts
     EditText timerDisplay;
     EditText BACDisplay;
     String timerVal = "0:00";
@@ -32,19 +41,27 @@ public class BACActivity extends AppCompatActivity {
     bacCalculator BAC;
     TextView warnerText;
     RideRequestButton uberButton;
-    Animation buttonAnim2;
-    Animation buttonAnim3;
+
+    // Declaring other variables
     long secsPassed = 0;
 
-
-
+    /**
+     * Creates the home/BAC activity when loaded
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        Sets up the activity layouts and buttons
+         */
         setContentView(R.layout.activity_bac);
         TextView BACHeader = findViewById(R.id.BACHeader);
         BACHeader.setText("Current BAC");
 
+        /*
+        Sets up Uber
+         */
         SessionConfiguration config = new SessionConfiguration.Builder()
                 // mandatory
                 .setClientId("T22JNnaxpssR4mBOu4sglqRdI9UXByGX")
@@ -54,10 +71,16 @@ public class BACActivity extends AppCompatActivity {
         UberSdk.initialize(config);
 
 
+        /*
+        Controls Button animations
+         */
         buttonAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         buttonAnim2 = AnimationUtils.loadAnimation(BACActivity.this, R.anim.fadein);
         buttonAnim3 = AnimationUtils.loadAnimation(BACActivity.this, R.anim.fadein);
 
+        /*
+        Controls background animation
+         */
         HomeActivity = findViewById(R.id.HomeActivity);
         warnerText = findViewById(R.id.Warner);
         uberButton = findViewById(R.id.uberButton);
@@ -72,6 +95,9 @@ public class BACActivity extends AppCompatActivity {
         // exit fade animation duration 1 second
         defaultBackground.setExitFadeDuration(1000);
 
+        /*
+        Initializes display views
+         */
         TextView TimeHeader = findViewById(R.id.TimeHeader);
         TimeHeader.setText("Time Left Till Sober:");
 
@@ -87,6 +113,9 @@ public class BACActivity extends AppCompatActivity {
         addDrink.setText("+Drink");
 
 
+        /*
+        Sets up listeners
+         */
         addDrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +145,9 @@ public class BACActivity extends AppCompatActivity {
         });
 
 
+        /*
+        Sets up the timer to update when BAC is updated and makes the Uber button visible
+         */
         if (bacCalculator.getBAC() > 0) {
             warnerText.setVisibility(View.VISIBLE);
             warnerText.startAnimation(buttonAnim2);
@@ -127,10 +159,6 @@ public class BACActivity extends AppCompatActivity {
                 }
             }, 3000);
 
-            /**
-             * This is the countdown timer for the time left till BAC = 0. It is called from the addDrinktoBAC
-             * method so that it starts the timer each time a drink is added by the user.
-             */
             new CountDownTimer(bacCalculator.getTimeLeft(), 1000) {
                 @Override
                 public void onTick(long millisInFuture) {
@@ -160,6 +188,9 @@ public class BACActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    Restarts animation on resume
+     */
     protected void onResume() {
         super.onResume();
         if (defaultBackground != null && !defaultBackground.isRunning()) {
@@ -169,6 +200,9 @@ public class BACActivity extends AppCompatActivity {
 
     }
 
+    /*
+    Pauses animation when activity is left
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -179,12 +213,18 @@ public class BACActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Controls what happens when user selects +Drink
+     */
     private void goToDrinks() {
         Intent intent = new Intent(BACActivity.this, DrinksActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Controls what happens when user selects Profile
+     */
     private void goToProfile() {
             Intent intent = new Intent(BACActivity.this, UserDisplay.class);
             startActivity(intent);

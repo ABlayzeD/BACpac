@@ -12,25 +12,41 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * This class creates the drink activity where the user can select a category
+ */
 public class DrinksActivity extends AppCompatActivity {
+    // Declaring animated background
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
+    Animation buttonAnim;
+
+    // Declaring page buttons and layouts
     TextView DrinkHeader;
     Button cancelBtn;
     Button beerBtn;
     Button wineBtn;
     Button liqBtn;
     Button customBtn;
-    Animation buttonAnim;
 
+
+    /**
+     * Creates the Drink Menu activity when loaded
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        Sets up the activity layouts and buttons
+         */
         setContentView(R.layout.activity_drinks);
         buttonAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         DrinkHeader=findViewById(R.id.DrinksPageHeader);
         DrinkHeader.setText("Pick a drink!");
-        /**
+
+        /*
          * initializing all buttons in activity
          */
         cancelBtn = findViewById(R.id.CancelButton);
@@ -44,6 +60,9 @@ public class DrinksActivity extends AppCompatActivity {
         customBtn = findViewById(R.id.CustomButton);
         customBtn.setText("Custom");
 
+        /*
+        Controls background animation
+         */
         HomeActivity = findViewById(R.id.HomeActivity);
         defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
         HomeActivity.setBackground(defaultBackground);
@@ -52,7 +71,7 @@ public class DrinksActivity extends AppCompatActivity {
         // exit fade animation duration 1 second
         defaultBackground.setExitFadeDuration(1000);
 
-        /**
+        /*
          * all listeners for buttons
          */
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -93,30 +112,45 @@ public class DrinksActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Controls what happens when cancel button is clicked
+     */
     private void goBack() {
         Intent intent = new Intent(DrinksActivity.this, BACActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Controls what happens when beer button is clicked
+     */
     private void goToBeer() {
         Intent intent = new Intent(DrinksActivity.this, BeerActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Controls what happens when wine button is clicked
+     */
     private void goToWine() {
         Intent intent = new Intent(DrinksActivity.this, WineActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Controls what happens when liquor button is clicked
+     */
     private void goToLiq() {
         Intent intent = new Intent(DrinksActivity.this, LiqActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Controls what happens when custom button is clicked
+     */
     private void goToCustom() {
         Intent intent = new Intent(DrinksActivity.this, CustomDrinkActivity.class);
         startActivity(intent);

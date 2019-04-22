@@ -14,23 +14,40 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+/**
+ * This class creates the Wine activity where the user can select a wine of choice
+ */
 public class WineActivity extends AppCompatActivity {
+    // Declaring animated background
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
+
+    // Declaring page buttons and layouts
     Button[] drinkButtonList;
-    int counter;
     Button cancelButton;
     LinearLayout LL;
+
+    // Declaring wine array
     ArrayList<Drink> drinkList;
 
+    // Declaring other variables
+    int counter;
+
+    /**
+     * Creates the wine activity when loaded
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        Sets up the activity layouts and buttons
+         */
         setContentView(R.layout.activity_wine);
         LL = findViewById(R.id.buttonlayout3);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
 
         cancelButton=findViewById(R.id.cancel2);
         cancelButton.setText("Cancel");
@@ -41,6 +58,9 @@ public class WineActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        Controls background animation
+         */
         HomeActivity = findViewById(R.id.HomeActivity);
         defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
         HomeActivity.setBackground(defaultBackground);
@@ -50,6 +70,9 @@ public class WineActivity extends AppCompatActivity {
         defaultBackground.setExitFadeDuration(1000);
 
 
+        /*
+        Generates the wine list for display and selection
+         */
         drinkList=DrinksReader.pullDrinkFromCSV(WineActivity.this, "Wines.csv");
         drinkButtonList=new Button[drinkList.size()];
         counter=0;
@@ -69,11 +92,19 @@ public class WineActivity extends AppCompatActivity {
             counter++;
         }
     }
+
+    /**
+     * Controls what happens when cancel button is clicked
+     */
     private void cancel() {
         Intent intent = new Intent(WineActivity.this, DrinksActivity.class);
         startActivity(intent);
         finish();
     }
+
+    /**
+     * Controls what happens when user selects a wine
+     */
     private void userDrank() {
         Intent intent = new Intent(WineActivity.this, BACActivity.class);
         startActivity(intent);

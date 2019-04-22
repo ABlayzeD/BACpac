@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class is used to calculate the BAC of the user and the timer
+ */
 public class bacCalculator {
-    /**
-     * This class is used to calculate the BAC. To use create an Object reference for Each BAC you
-     * want calculated. Example Once BAC <= 0 then create a new reference to start as the user is
-     * now sober.
+
+    /*
+    Declaring and initializing needed variables
      */
     private static BigDecimal BAC = BigDecimal.valueOf(0);
     private static BigDecimal totalOunces= BigDecimal.valueOf(0);
@@ -19,6 +21,9 @@ public class bacCalculator {
     static BACActivity displayReference = new BACActivity();
 
 
+    /**
+     * Constructor for BAC variables
+     */
     public bacCalculator() {
         totalOunces = BigDecimal.valueOf(0);
         decimalPercentAlc =BigDecimal.valueOf(0);
@@ -40,20 +45,34 @@ public class bacCalculator {
         BAC = (((totalOunces.multiply(decimalPercentAlc)).divide(BigDecimal.valueOf(user.getBMI()),MathContext.DECIMAL32))); //.subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015))));
     }
 
+    /**
+     * Adds time that is uses to update timer and BAC
+     * @param passed
+     */
     public static void addMinutes(long passed)
     {
         timePassed.add(BigDecimal.valueOf(TimeUnit.SECONDS.toMinutes(passed)));
     }
 
+    /**
+     * Gets a rounded BAC used for display
+     * @return Rounded BAC
+     */
     public static float getBAC()
     {
         return BAC.setScale(3,BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
+    /**
+     * Updates the BAC variable based on time passed
+     */
     public static void updateBAC(){
         BAC = BAC.subtract((timePassed.divide(BigDecimal.valueOf(60),MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(.015)));
     }
 
+    /**
+     * Resets the BAC once timer reaches zero
+     */
     public static void resetBAC(){
         BAC = BigDecimal.valueOf(0);
         totalOunces = BigDecimal.valueOf(0);
@@ -62,6 +81,10 @@ public class bacCalculator {
         ouncesAlc = BigDecimal.valueOf(0);
     }
 
+    /**
+     * Calculates the time left in milliseconds
+     * @return time left in milliseconds
+     */
     public static long getTimeLeft(){
         BigDecimal timeLeft;
         timeLeft = BAC.divide(BigDecimal.valueOf(.015),MathContext.DECIMAL128);

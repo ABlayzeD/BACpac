@@ -8,13 +8,22 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * This class creates the Splash page
+ */
 public class SplashActivity extends AppCompatActivity {
+
+    // Declaring animation variables
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        Sets up activity display layout views
+         */
         setContentView(R.layout.activity_splash);
 
         TextView textView = (TextView) findViewById(R.id.BACpacTitle);
@@ -23,6 +32,9 @@ public class SplashActivity extends AppCompatActivity {
         ImageView SplashImage = findViewById(R.id.SplashImage);
         SplashImage.setImageResource(R.drawable.splash);
 
+        /*
+        Controls teh background animation
+         */
         HomeActivity = findViewById(R.id.HomeActivity);
         // initializing animation
         defaultBackground = (AnimationDrawable) HomeActivity.getBackground();
@@ -32,6 +44,9 @@ public class SplashActivity extends AppCompatActivity {
         // exit fade animation duration 1 second
         defaultBackground.setExitFadeDuration(1000);
 
+        /*
+        Controls the timer for Splash page before transition
+         */
         new Thread(new Runnable()
         {
             @Override
@@ -50,6 +65,10 @@ public class SplashActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    /**
+     * Controls the transfer to home page once timer runs out
+     */
     private void goToLogIn() {
         Intent intent = new Intent(SplashActivity.this, GLoginActivity.class);
         startActivity(intent);

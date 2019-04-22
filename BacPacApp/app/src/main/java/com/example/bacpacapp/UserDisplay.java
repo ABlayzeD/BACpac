@@ -18,20 +18,38 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
+/**
+ * This class creates the User Display page
+ */
 public class UserDisplay extends AppCompatActivity{
+
+    // Declaring animation variables
     ConstraintLayout HomeActivity;
     AnimationDrawable defaultBackground;
     Animation buttonAnim;
+
+    // Declaring display variables
     GoogleSignInClient mGoogleSignInClient;
     private TextInputEditText weightTV;
     private TextView nameTV;
     private TextInputEditText heightTV;
     private TextView bmi;
     private Button calculate;
+
+    // Declaring & Initializing user object
     UserProfile user = new UserProfile(UserProfile.weight,UserProfile.height);
+
+    /**
+     * Creates the User display activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        Sets up the activity layouts and buttons
+         */
         setContentView(R.layout.activity_user);
         final Button cancelButton=findViewById(R.id.cancel4);
         cancelButton.setText("Back");
@@ -47,6 +65,10 @@ public class UserDisplay extends AppCompatActivity{
                 }, 100);
             }
         });
+
+        /*
+        Uses Google account to pull name for display
+         */
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -57,6 +79,9 @@ public class UserDisplay extends AppCompatActivity{
             nameTV.setText("Name: "+personName);
         }
 
+        /*
+        Controls the background animation
+         */
         HomeActivity = findViewById(R.id.HomeActivity);
         buttonAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         // initializing animation
@@ -67,6 +92,9 @@ public class UserDisplay extends AppCompatActivity{
         // exit fade animation duration 1 second
         defaultBackground.setExitFadeDuration(1000);
 
+        /*
+        Sets up displays for user values and updates on click
+         */
         heightTV = findViewById(R.id.h);
         weightTV = findViewById(R.id.w);
         calculate = findViewById(R.id.calc);
@@ -88,6 +116,10 @@ public class UserDisplay extends AppCompatActivity{
             }
         });
     }
+
+    /**
+     * Controls what happens when user clicks cancel
+     */
     private void cancel() {
         Intent intent = new Intent(UserDisplay.this, BACActivity.class);
         startActivity(intent);
